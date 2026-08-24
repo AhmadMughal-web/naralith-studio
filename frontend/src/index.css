@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0f2a47;
+  --color-navy-700: #163d61;
+  --color-navy-600: #1e4d78;
+  --color-navy-500: #2c5480;
+  --color-orange-600: #d9660a;
+  --color-orange-500: #f5821f;
+  --color-orange-400: #f9a153;
+  --color-ink: #16181d;
+  --color-body: #4b5563;
+  --color-muted: #8a94a6;
+  --color-hairline: #e7e9ee;
+
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-body: "Inter", ui-sans-serif, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+/* Gradient text for highlighted phrases */
+.text-gradient {
+  background-image: linear-gradient(100deg, var(--color-navy-700), var(--color-orange-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary CTA button — navy linear gradient, white text */
+.btn-primary {
+  background-image: linear-gradient(135deg, var(--color-navy-600), var(--color-navy-900));
+  color: #fff;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.12);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Secondary outline button */
+.btn-secondary {
+  border: 1.5px solid var(--color-navy-700);
+  color: var(--color-navy-900);
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-navy-900);
+  color: #fff;
+}
+
+/* Glassmorphism card — navy/orange gradient glass */
+.glass-card {
+  background-image: linear-gradient(150deg, rgba(22, 61, 97, 0.09), rgba(245, 130, 31, 0.07));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 40px -12px rgba(15, 42, 71, 0.18);
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Ambient corner glows */
+.corner-glow {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(70px);
+  z-index: 0;
+}
+
+.corner-glow-navy {
+  background: radial-gradient(circle, rgba(22, 61, 97, 0.22), transparent 70%);
+}
+
+.corner-glow-orange {
+  background: radial-gradient(circle, rgba(245, 130, 31, 0.20), transparent 70%);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    transition: none;
+  }
+
+  .draw-path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
+
+/* Signature hero diagram — path draws in once on load */
+.draw-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw-in 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.draw-path.delay-1 {
+  animation-delay: 0.15s;
+}
+
+.draw-path.delay-2 {
+  animation-delay: 0.55s;
+}
+
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.node-pop {
+  opacity: 0;
+  transform: scale(0.4);
+  animation: node-in 0.4s ease forwards;
+}
+
+@keyframes node-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
