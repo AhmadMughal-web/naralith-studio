@@ -86,47 +86,48 @@ const PROJECTS = [
 
 export default function Work() {
     return (
-        <section className="py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        /* Top padding increased to pt-28 (112px) on mobile & pt-36 (144px) on desktop to clear Navbar */
+        <section className="pt-28 sm:pt-36 pb-16 sm:pb-24">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
                 {/* Header Section */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-orange-600">
                         Selected Works
-                    </p>
-                    <h1 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl text-navy-900">
+                    </span>
+                    <h1 className="mt-3 text-2xl font-bold sm:text-4xl lg:text-5xl text-navy-900">
                         Crafting Digital Solutions for Modern Brands
                     </h1>
-                    <p className="mt-4 text-base leading-relaxed text-body sm:text-lg">
-                        We engineer high-performance web applications, custom SaaS platforms, and enterprise-grade full-stack digital solutions. Explore our featured client projects below:
+                    <p className="mt-3 text-xs sm:text-base leading-relaxed text-body">
+                        We engineer high-performance web applications, custom SaaS platforms, and enterprise-grade full-stack digital solutions.
                     </p>
                 </div>
 
-                {/* Row-wise Projects List */}
-                <div className="mt-16 flex flex-col divide-y divide-hairline rounded-2xl border border-hairline bg-white/70 backdrop-blur-md shadow-sm">
+                {/* Project List */}
+                <div className="mt-8 sm:mt-12 flex flex-col divide-y divide-hairline rounded-2xl border border-hairline bg-white/70 backdrop-blur-md shadow-sm overflow-hidden">
                     {PROJECTS.map((project) => (
                         <div
                             key={project.id}
-                            className="group flex flex-col gap-6 p-6 transition-all duration-200 hover:bg-slate-50/90 md:flex-row md:items-center md:justify-between lg:px-8"
+                            className="group flex flex-col items-center p-5 text-center transition-all duration-200 hover:bg-slate-50/90 sm:p-6 sm:text-left sm:flex-row sm:items-center sm:justify-between sm:gap-6"
                         >
-                            {/* Left Column: Details */}
-                            <div className="max-w-2xl">
-                                <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
+                            {/* Left Column: Project Details */}
+                            <div className="flex-1 min-w-0">
+                                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-orange-600">
                                     {project.category}
                                 </span>
-                                <h2 className="mt-1 text-xl font-bold text-navy-900">
+                                <h2 className="mt-0.5 text-base sm:text-lg font-bold text-navy-900">
                                     {project.title}
                                 </h2>
-                                <p className="mt-2 text-sm leading-relaxed text-body">
+                                <p className="mt-1 text-xs text-body max-w-3xl">
                                     {project.description}
                                 </p>
 
-                                {/* Tech Stack Badges (Orange Highlight on Row Hover) */}
-                                <div className="mt-3 flex flex-wrap gap-2">
+                                {/* Tech Badges */}
+                                <div className="mt-3 flex flex-wrap justify-center sm:justify-start gap-1.5">
                                     {project.tech.map((tech) => (
                                         <span
                                             key={tech}
-                                            className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 transition-colors duration-200 group-hover:bg-orange-500/10 group-hover:text-orange-600 border border-transparent group-hover:border-orange-500/20"
+                                            className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] sm:text-xs font-medium text-slate-600 transition-colors duration-200 group-hover:bg-orange-500/10 group-hover:text-orange-600 border border-transparent group-hover:border-orange-500/20"
                                         >
                                             {tech}
                                         </span>
@@ -134,17 +135,17 @@ export default function Work() {
                                 </div>
                             </div>
 
-                            {/* Right Column: Live Link Button */}
-                            <div className="flex shrink-0 items-center">
+                            {/* Center-Aligned Button for Mobile / Right-Aligned for Desktop */}
+                            <div className="mt-4 sm:mt-0 flex shrink-0 justify-center items-center w-full sm:w-auto">
                                 <a
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-transform group-hover:scale-105"
+                                    className="btn-primary inline-flex justify-center items-center gap-1.5 rounded-full px-6 py-2 sm:px-4 sm:py-2 text-xs font-semibold shadow-sm transition-transform group-hover:scale-105 w-full sm:w-auto max-w-[220px]"
                                 >
                                     Live Preview
                                     <svg
-                                        className="h-4 w-4"
+                                        className="h-3.5 w-3.5"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -162,33 +163,25 @@ export default function Work() {
                     ))}
                 </div>
 
-                {/* Bottom Call-to-Action Section (Compact Height) */}
-                <div className="mt-12 rounded-2xl border border-hairline bg-gradient-to-r from-navy-900 via-navy-700 to-slate-900 px-6 py-6 sm:px-8 shadow-lg">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-
-                        {/* Left: Text Info */}
-                        <div className="max-w-xl">
-                            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                {/* Bottom Call-to-Action Section */}
+                <div className="mt-8 sm:mt-12 rounded-2xl border border-hairline bg-gradient-to-r from-navy-900 via-navy-700 to-slate-900 p-5 sm:p-6 shadow-lg">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-center sm:text-left">
+                        <div>
+                            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-orange-400">
                                 Have a Project in Mind?
                             </span>
-                            <h2 className="mt-1 text-lg sm:text-xl font-bold text-white">
+                            <h2 className="mt-0.5 text-base sm:text-lg font-bold text-white">
                                 Let’s Build Something Extraordinary Together
                             </h2>
-                            <p className="mt-1 text-xs sm:text-sm text-slate-300">
-                                Ready for a custom web app or digital transformation? Let's bring your vision to life.
-                            </p>
                         </div>
-
-                        {/* Right: CTA Button */}
-                        <div className="flex shrink-0 items-center">
+                        <div className="flex shrink-0 items-center justify-center">
                             <Link
                                 to="/contact"
-                                className="rounded-full bg-orange-500 hover:bg-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+                                className="w-full sm:w-auto text-center rounded-full bg-orange-500 hover:bg-orange-600 px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
                             >
                                 Start a Project →
                             </Link>
                         </div>
-
                     </div>
                 </div>
 

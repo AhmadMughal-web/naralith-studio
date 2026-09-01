@@ -23,17 +23,17 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+}
+
+body {
   font-family: var(--font-body);
   color: var(--color-ink);
-  background-color: #ffffff;
-  overflow-x: hidden;
+  background: #ffffff;
   -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   font-family: var(--font-display);
 }
 
@@ -51,11 +51,9 @@ h4 {
   color: #fff;
   transition: filter 0.2s ease, transform 0.2s ease;
 }
-
 .btn-primary:hover {
   filter: brightness(1.12);
 }
-
 .btn-primary:active {
   transform: translateY(1px);
 }
@@ -67,7 +65,6 @@ h4 {
   background: transparent;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 .btn-secondary:hover {
   background-color: var(--color-navy-900);
   color: #fff;
@@ -89,7 +86,7 @@ h4 {
   }
 }
 
-/* Ambient corner glows */
+/* Ambient corner glows — pure CSS, no image weight */
 .corner-glow {
   position: absolute;
   border-radius: 9999px;
@@ -97,11 +94,9 @@ h4 {
   filter: blur(70px);
   z-index: 0;
 }
-
 .corner-glow-navy {
   background: radial-gradient(circle, rgba(22, 61, 97, 0.22), transparent 70%);
 }
-
 .corner-glow-orange {
   background: radial-gradient(circle, rgba(245, 130, 31, 0.20), transparent 70%);
 }
@@ -112,28 +107,33 @@ h4 {
   transform: translateY(18px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Light navy-orange gradient — used as the footer background */
+.footer-gradient {
+  background-image: linear-gradient(
+    120deg,
+    rgba(22, 61, 97, 0.08),
+    rgba(255, 255, 255, 0.4) 45%,
+    rgba(245, 130, 31, 0.09)
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary, .btn-secondary {
     transition: none;
   }
-
   .draw-path {
     stroke-dashoffset: 0 !important;
     animation: none !important;
@@ -146,30 +146,46 @@ h4 {
   stroke-dashoffset: 600;
   animation: draw-in 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
-
 .draw-path.delay-1 {
   animation-delay: 0.15s;
 }
-
 .draw-path.delay-2 {
   animation-delay: 0.55s;
 }
-
 @keyframes draw-in {
   to {
     stroke-dashoffset: 0;
   }
 }
-
 .node-pop {
   opacity: 0;
   transform: scale(0.4);
   animation: node-in 0.4s ease forwards;
 }
-
 @keyframes node-in {
   to {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* OverlayScrollbars custom theme — navy-orange gradient thumb, transparent
+   track. Replaces the native scrollbar entirely (see main.jsx), so this is
+   guaranteed to render identically across every browser and OS. */
+.os-theme-naralith {
+  box-sizing: border-box;
+  --os-size: 10px;
+  --os-handle-max-size: 80px;
+  --os-handle-min-size: 24px;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 2px;
+  --os-track-border-radius: 999px;
+  --os-handle-interactive-area-offset: 4px;
+  --os-handle-border-radius: 999px;
+  --os-handle-bg: linear-gradient(180deg, var(--color-navy-900), var(--color-orange-600));
+  --os-handle-bg-hover: linear-gradient(180deg, var(--color-navy-900), var(--color-orange-600));
+  --os-handle-bg-active: linear-gradient(180deg, var(--color-navy-900), var(--color-orange-600));
+}
+.os-theme-naralith .os-scrollbar-track {
+  background: transparent;
 }

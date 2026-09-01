@@ -101,24 +101,24 @@ function StatCard({ stat, index }) {
     return (
         <div
             ref={ref}
-            className={`glass-card rounded-2xl p-6 text-center sm:text-left reveal ${isVisible ? "is-visible" : ""}`}
+            className={`glass-card rounded-2xl p-4 sm:p-6 text-center sm:text-left reveal ${isVisible ? "is-visible" : ""}`}
             style={{ transitionDelay: isVisible ? `${index * 80}ms` : "0ms" }}
         >
-            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-white/70 text-navy-700 sm:mx-0">
+            <div className="mx-auto flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-white/70 text-navy-700 sm:mx-0">
                 <Icon size={22} strokeWidth={1.8} />
             </div>
-            <div className="mt-4 font-display text-3xl font-semibold text-gradient">
+            <div className="mt-3 sm:mt-4 font-display text-2xl sm:text-3xl font-semibold text-gradient">
                 <Counter target={stat.value} isVisible={isVisible} />
             </div>
-            <div className="mt-1 text-sm font-medium text-muted">{stat.label}</div>
+            <div className="mt-1 text-xs sm:text-sm font-medium text-muted">{stat.label}</div>
         </div>
     );
 }
 
 function ProjectCard({ project, index }) {
     return (
-        <Reveal delay={index * 90} className="glass-card rounded-2xl p-6">
-            <div className="mb-5 h-44 w-full overflow-hidden rounded-xl bg-gray-100/50">
+        <Reveal delay={index * 90} className="glass-card rounded-2xl p-5 sm:p-6">
+            <div className="mb-4 sm:mb-5 h-40 sm:h-44 w-full overflow-hidden rounded-xl bg-gray-100/50">
                 <img
                     src={project.image || "/imgs/project-placeholder.jpg"}
                     alt={project.title}
@@ -150,25 +150,26 @@ export default function HeroSection() {
     return (
         <div className="relative overflow-hidden">
 
-            {/* 1. HERO SECTION */}
-            <section className="relative pt-12 lg:pt-16 mt-16">
-                <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-12 lg:items-end lg:gap-6 lg:px-10">
+            {/* 1. HERO SECTION (Top Spacing Adjusted with pt-28/pt-36 to avoid overlapping header) */}
+            <section className="relative pt-28 sm:pt-32 lg:pt-36">
+                <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-6 lg:px-10">
 
-                    <div className="order-1 max-w-xl pb-10 lg:order-1 lg:col-span-7 lg:pb-16">
+                    {/* Left Column Text Content */}
+                    <div className="order-1 max-w-xl pb-6 sm:pb-10 lg:order-1 lg:col-span-7 lg:pb-16">
                         <span className="inline-flex items-center gap-2 rounded-full border border-navy-700/20 bg-navy-700/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-navy-700">
-                            Naralith Studio 
+                            Naralith Studio
                         </span>
 
-                        <h1 className="mt-7 font-display text-4xl font-medium leading-[1.15] tracking-tight text-ink sm:text-5xl">
+                        <h1 className="mt-5 sm:mt-7 font-display text-3xl sm:text-5xl font-medium leading-[1.15] tracking-tight text-ink">
                             We design and build web products your customers{" "}
                             <span className="text-gradient">actually rely on.</span>
                         </h1>
 
-                        <p className="mt-6 max-w-lg text-base leading-relaxed text-body sm:text-lg">
+                        <p className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-lg leading-relaxed text-body">
                             Naralith Studio delivers end-to-end graphic design and high-performance web development — from initial design concepts to live production.
                         </p>
 
-                        <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+                        <div className="mt-8 sm:mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
                             <Link
                                 to="/contact"
                                 className="btn-primary rounded-full px-7 py-3.5 text-center text-sm font-semibold"
@@ -183,7 +184,7 @@ export default function HeroSection() {
                             </Link>
                         </div>
 
-                        <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+                        <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm text-muted">
                             <span className="font-semibold text-ink">5+</span> engineers &amp; designers
                             <span aria-hidden="true">•</span>
                             <span className="font-semibold text-ink">10+</span> products delivered
@@ -192,8 +193,9 @@ export default function HeroSection() {
                         </div>
                     </div>
 
+                    {/* Right Column Illustration Image */}
                     <div className="order-2 lg:order-2 lg:col-span-5 lg:self-end">
-                        <div className="relative mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none lg:w-[135%] lg:-ml-[20%] lg:-mb-1">
+                        <div className="relative mx-auto w-full max-w-md sm:max-w-lg lg:mx-0 lg:max-w-none lg:w-[135%] lg:-ml-[20%] lg:-mb-1">
                             <img
                                 src="/imgs/illustration.png"
                                 alt="Illustration of developers building web application"
@@ -209,13 +211,13 @@ export default function HeroSection() {
             </section>
 
             {/* 2. PROJECT PREVIEW SECTION */}
-            <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+            <section className="mx-auto max-w-7xl px-5 sm:px-6 py-12 sm:py-16 lg:px-10 lg:py-20">
                 <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
                     <div>
                         <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
                             Selected Work
                         </span>
-                        <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                        <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
                             Products we've shipped
                         </h2>
                     </div>
@@ -227,7 +229,8 @@ export default function HeroSection() {
                     </Link>
                 </Reveal>
 
-                <div className="mt-12 grid gap-6 md:grid-cols-3">
+                {/* Mobile First Grid Layout */}
+                <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
                     {projects.map((project, index) => (
                         <ProjectCard key={project.id} project={project} index={index} />
                     ))}
@@ -235,27 +238,28 @@ export default function HeroSection() {
             </section>
 
             {/* 3. STATS PREVIEW SECTION */}
-            <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+            <section className="mx-auto max-w-7xl px-5 sm:px-6 py-12 sm:py-16 lg:px-10 lg:py-20">
                 <Reveal className="mx-auto max-w-xl text-center">
                     <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
                         Why Teams Choose Us
                     </span>
-                    <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                    <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
                         Small team, real results.
                     </h2>
-                    <p className="mt-4 text-base leading-relaxed text-body">
+                    <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-body">
                         No account managers, no outsourced work — the people who build
                         your product are the people you talk to.
                     </p>
                 </Reveal>
 
-                <div className="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
+                {/* Mobile First Grid */}
+                <div className="mt-8 sm:mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
                     {STATS.map((stat, index) => (
                         <StatCard key={stat.label} stat={stat} index={index} />
                     ))}
                 </div>
 
-                <div className="mt-10 text-center">
+                <div className="mt-8 sm:mt-10 text-center">
                     <Link
                         to="/about"
                         className="text-sm font-semibold text-navy-700 hover:text-orange-600 transition-colors"
@@ -265,21 +269,19 @@ export default function HeroSection() {
                 </div>
             </section>
 
-            {/* 4. CLOSING CTA SECTION */}
+            {/* 4. CLOSING CTA SECTION (Compressed Padding & Cleaner Layout) */}
             <section className="relative">
-                <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24 lg:px-10 lg:pb-32">
-                    <Reveal className="glass-card mx-auto max-w-3xl rounded-3xl px-8 py-14 text-center sm:px-14">
-                        <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 pb-14 sm:pb-20 lg:px-10 lg:pb-24">
+                    <Reveal className="glass-card mx-auto max-w-3xl rounded-3xl px-6 py-8 sm:px-10 sm:py-10 text-center">
+                        <h2 className="font-display text-xl sm:text-3xl font-semibold leading-tight tracking-tight text-ink">
                             Your project deserves more than a template and a deadline.
                         </h2>
-                        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-body sm:text-lg">
-                            Let's build something your customers can rely on — and your
-                            business can actually grow with. Tell us what you're building;
-                            we'll reply within one business day.
+                        <p className="mx-auto mt-3 sm:mt-4 max-w-lg text-xs sm:text-base leading-relaxed text-body">
+                            Let's build something your customers can rely on — and your business can actually grow with. Tell us what you're building; we'll reply within one business day.
                         </p>
                         <Link
                             to="/contact"
-                            className="btn-primary mt-8 inline-block rounded-full px-8 py-3.5 text-sm font-semibold"
+                            className="btn-primary mt-5 sm:mt-6 inline-block rounded-full px-7 py-3 text-xs sm:text-sm font-semibold"
                         >
                             Get in Touch
                         </Link>
