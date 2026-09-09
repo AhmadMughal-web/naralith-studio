@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const SERVICES = [
     {
@@ -43,6 +44,20 @@ export default function Services() {
     return (
         /* Top padding updated to pt-28 sm:pt-36 to clear sticky Navbar */
         <section className="pt-28 sm:pt-36 pb-16 sm:pb-24">
+
+            <Helmet>
+                <title> Naralith Studio — Our Services | Web, AI, UI/UX & Graphic Design</title>
+                <meta
+                    name="description"
+                    content="Explore Naralith Studio's services — custom web development, UI/UX design, AI chatbot integration, graphic design & branding, and SEO growth marketing."
+                />
+                <meta
+                    name="keywords"
+                    content="web development services, UI UX design services, AI chatbot integration, graphic design services, SEO growth marketing"
+                />
+                <link rel="canonical" href="https://naralithstudio.com/services" />
+            </Helmet>
+
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
                 {/* Intro Section */}

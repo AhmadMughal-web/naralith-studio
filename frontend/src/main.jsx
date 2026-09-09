@@ -6,6 +6,7 @@ import { OverlayScrollbars } from "overlayscrollbars";
 import "overlayscrollbars/overlayscrollbars.css";
 import "./index.css";
 import App from "./App.jsx";
+import { HelmetProvider } from "react-helmet-async";
 
 OverlayScrollbars(document.body, {
   scrollbars: {
@@ -14,11 +15,12 @@ OverlayScrollbars(document.body, {
     autoHideDelay: 400,
   },
 });
-
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </React.StrictMode>
 );

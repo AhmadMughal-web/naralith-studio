@@ -10,7 +10,8 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import Chatbot from "./components/Chatbot";
 
-// Individual Detail Pages
+// Pages & Detail Pages
+import Blog from "./pages/Blog";
 import UiUxDetail from "./pages/UiUxDetail";
 import AiChatbotDetail from "./pages/AiChatbotDetail";
 import GraphicDesignDetail from "./pages/GraphicDesignDetail";
@@ -60,6 +61,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work" element={<Work />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
 

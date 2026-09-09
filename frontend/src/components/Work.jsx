@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const PROJECTS = [
     {
@@ -88,6 +89,20 @@ export default function Work() {
     return (
         /* Top padding increased to pt-28 (112px) on mobile & pt-36 (144px) on desktop to clear Navbar */
         <section className="pt-28 sm:pt-36 pb-16 sm:pb-24">
+
+            <Helmet>
+                <title>Naralith Studio — Our Work | Projects & Case Studies</title>
+                <meta
+                    name="description"
+                    content="Browse Naralith Studio's portfolio of custom web apps, AI chatbot platforms, and brand identity projects delivered for real businesses."
+                />
+                <meta
+                    name="keywords"
+                    content="web development portfolio, custom software projects, AI chatbot case study, design agency portfolio"
+                />
+                <link rel="canonical" href="https://naralithstudio.com/work" />
+            </Helmet>
+
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
                 {/* Header Section */}

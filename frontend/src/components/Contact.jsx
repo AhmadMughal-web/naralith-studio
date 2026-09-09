@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Contact() {
     const [selectedService, setSelectedService] = useState("Web Development");
@@ -30,7 +31,22 @@ export default function Contact() {
     };
 
     return (
-       <section className="relative overflow-hidden pt-28 sm:pt-36 pb-12 sm:pb-20 lg:pb-28">
+        <section className="relative overflow-hidden pt-28 sm:pt-36 pb-12 sm:pb-20 lg:pb-28">
+
+
+            <Helmet>
+                <title>Naralith Studio — Contact Us | Start Your Project</title>
+                <meta
+                    name="description"
+                    content="Get in touch with Naralith Studio for custom web development, AI integration, or design projects. We reply within one business day."
+                />
+                <meta
+                    name="keywords"
+                    content="contact web development agency, hire full stack developers, get a website quote"
+                />
+                <link rel="canonical" href="https://naralithstudio.com/contact" />
+            </Helmet>
+
             {/* Background Decorative Ambient Glows */}
             <div className="pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full bg-orange-500/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-navy-900/10 blur-3xl" />
@@ -137,8 +153,8 @@ export default function Contact() {
                                             type="button"
                                             onClick={() => setSelectedService(service)}
                                             className={`rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-medium transition-all duration-200 ${selectedService === service
-                                                    ? "bg-navy-900 text-white shadow-md scale-105 ring-2 ring-navy-900/20"
-                                                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                                                ? "bg-navy-900 text-white shadow-md scale-105 ring-2 ring-navy-900/20"
+                                                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                                                 }`}
                                         >
                                             {service}

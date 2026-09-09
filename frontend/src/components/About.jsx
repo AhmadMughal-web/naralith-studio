@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
     Award,
     Sparkles,
@@ -47,6 +48,20 @@ export default function About() {
 
     return (
         <div className="relative overflow-hidden pt-28 sm:pt-36 pb-12 sm:pb-20">
+
+
+            <Helmet>
+                <title>Naralith Studio — About Us  | Our Team & Tech Stack</title>
+                <meta
+                    name="description"
+                    content="Meet the engineers and designers behind Naralith Studio — a remote-first development studio building modern React, Next.js, and AI-powered products."
+                />
+                <meta
+                    name="keywords"
+                    content="Naralith Studio team, software development company, remote development studio Lahore, full stack engineers"
+                />
+                <link rel="canonical" href="https://naralithstudio.com/about" />
+            </Helmet>
 
             {/* 1. HERO / OUR STORY SECTION */}
             <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Users, CheckCircle2, Heart, Clock } from "lucide-react";
 import useReveal from "../hooks/useReveal";
+import { Helmet } from "react-helmet-async";
+import { FiCompass, FiZap, FiMessageCircle, FiFeather, FiSearch } from "react-icons/fi";
 
 // Module level memory (Website reload hone par reset hoga, navigation par reset nahi hoga)
 const animatedTracker = new Set();
@@ -86,11 +88,55 @@ const projects = [
     },
 ];
 
+
 const STATS = [
-    { label: "Team Members", value: "10", Icon: Users },
-    { label: "Projects Delivered", value: "50+", Icon: CheckCircle2 },
-    { label: "Happy Clients", value: "20+", Icon: Heart },
+    { label: "Team Members", value: "5+", Icon: Users },
+    { label: "Projects Delivered", value: "20+", Icon: CheckCircle2 },
+    { label: "Happy Clients", value: "10+", Icon: Heart },
     { label: "Years Experience", value: "4+", Icon: Clock },
+];
+
+const MARKET_ISSUES = [
+    {
+        problemTitle: "Confusing User Experience",
+        problemTag: "Low Conversion",
+        problem: "Cluttered layouts and unclear navigation make visitors leave within seconds, before they even see what you offer.",
+        solutionTitle: "User-Centered UI/UX Design",
+        solution: "Intuitive interfaces and clear user flows designed to guide visitors and turn them into paying customers.",
+        Icon: FiCompass,
+    },
+    {
+        problemTitle: "Outdated, Slow Platforms",
+        problemTag: "High Bounce Rates",
+        problem: "Slow load times and broken mobile layouts push visitors away before your website even finishes loading.",
+        solutionTitle: "High-Performance Development",
+        solution: "Fast, modern web apps built with React and Tailwind CSS that load instantly and work on every device.",
+        Icon: FiZap,
+    },
+    {
+        problemTitle: "Overwhelmed Support Teams",
+        problemTag: "Slow Response",
+        problem: "Delayed replies to client messages mean lost leads and orders cancelled before anyone even sees them.",
+        solutionTitle: "AI Chatbot & Automation",
+        solution: "Smart AI chatbots that respond in 2-3 seconds, around the clock, so no client message goes unanswered.",
+        Icon: FiMessageCircle,
+    },
+    {
+        problemTitle: "Weak, Inconsistent Branding",
+        problemTag: "Low Trust",
+        problem: "Mismatched logos and colors across platforms make your business look unreliable to new customers.",
+        solutionTitle: "Brand Identity & Design",
+        solution: "Consistent visual identity, assets, and design systems that build trust and elevate market presence.",
+        Icon: FiFeather,
+    },
+    {
+        problemTitle: "Invisible on Search Engines",
+        problemTag: "No Organic Traffic",
+        problem: "Your business is nowhere to be found on Google, while competitors rank right at the top instead.",
+        solutionTitle: "SEO & Growth Marketing",
+        solution: "Technical SEO and data-driven strategies that get you found and turn searches into real revenue.",
+        Icon: FiSearch,
+    },
 ];
 
 // --- Helper Components ---
@@ -147,8 +193,23 @@ function ProjectCard({ project, index }) {
 
 // --- Main Hero Page Component ---
 export default function HeroSection() {
+    const [showAllIssues, setShowAllIssues] = useState(false);
+
     return (
         <div className="relative overflow-hidden">
+
+            <Helmet>
+                <title>Naralith Studio — Home</title>
+                <meta
+                    name="description"
+                    content="Naralith Studio builds fast, secure, production-grade web & mobile apps — React, Next.js, Node.js, Python, React Native — plus graphic design & brand identity."
+                />
+                <meta
+                    name="keywords"
+                    content="custom web application development, web development agency, AI chatbot development, UI UX design agency, brand identity design"
+                />
+                <link rel="canonical" href="https://naralithstudio.com/" />
+            </Helmet>
 
             {/* 1. HERO SECTION (Top Spacing Adjusted with pt-28/pt-36 to avoid overlapping header) */}
             <section className="relative pt-28 sm:pt-32 lg:pt-36">
@@ -210,30 +271,106 @@ export default function HeroSection() {
                 </div>
             </section>
 
-            {/* 2. PROJECT PREVIEW SECTION */}
-            <section className="mx-auto max-w-7xl px-5 sm:px-6 py-12 sm:py-16 lg:px-10 lg:py-20">
-                <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-                    <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
-                            Selected Work
-                        </span>
-                        <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
-                            Products we've shipped
-                        </h2>
-                    </div>
-                    <Link
-                        to="/work"
-                        className="text-sm font-semibold text-navy-700 hover:text-orange-600 transition-colors"
-                    >
-                        Explore All Projects →
-                    </Link>
+            {/* MARKET PROBLEMS x SOLUTIONS SECTION */}
+            <section className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20 lg:px-10 lg:py-24">
+                <Reveal className="mx-auto max-w-2xl text-center">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
+                        The Reality of Building Online
+                    </span>
+                    <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
+                        We know exactly where <span className="text-gradient">businesses get stuck.</span>
+                    </h2>
+                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-body">
+                        Five problems we see constantly — and exactly how we solve each one.
+                    </p>
                 </Reveal>
 
-                {/* Mobile First Grid Layout */}
-                <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-                    {projects.map((project, index) => (
-                        <ProjectCard key={project.id} project={project} index={index} />
-                    ))}
+                <div className="relative mt-10 sm:mt-16">
+                    {/* Center vertical line — visible on all screens */}
+                    <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-ink/10" />
+
+                    <div className="flex flex-col gap-8 sm:gap-12">
+                        {(showAllIssues ? MARKET_ISSUES : MARKET_ISSUES.slice(0, 2)).map((item, index) => {
+                            const { Icon } = item;
+                            return (
+                                <Reveal
+                                    key={index}
+                                    delay={index * 90}
+                                    className="relative grid grid-cols-2 items-start gap-3 sm:gap-8"
+                                >
+                                    {/* Center numbered node */}
+                                    <div className="absolute left-1/2 top-0 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#fdfbf9] bg-orange-500 text-white shadow-md sm:h-8 sm:w-8 sm:border-4">
+                                        <span className="text-[8px] font-bold sm:text-[10px]">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+                                    </div>
+
+                                    {/* Problem Side */}
+                                    <div className="pr-2 pt-8 sm:pr-10 sm:pt-0">
+                                        <div className="flex items-center gap-1.5 sm:gap-2">
+                                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-red-500/10 text-red-500 sm:h-8 sm:w-8 sm:rounded-lg">
+                                                <Icon size={13} className="sm:hidden" />
+                                                <Icon size={16} className="hidden sm:block" />
+                                            </span>
+                                            <span className="text-[9px] font-bold uppercase tracking-wider text-red-500/80 sm:text-[11px]">
+                                                The Problem
+                                            </span>
+                                        </div>
+                                        <h3 className="mt-1.5 font-display text-sm font-semibold leading-snug text-ink sm:mt-2.5 sm:text-xl">
+                                            {item.problemTitle}
+                                        </h3>
+                                        <p className="mt-1.5 text-xs leading-relaxed text-slate-600 sm:mt-2 sm:text-sm">
+                                            {item.problem}
+                                        </p>
+                                    </div>
+
+                                    {/* Solution Side */}
+                                    <div className="pl-2 pt-8 sm:pl-10 sm:pt-0">
+                                        <div className="flex items-center gap-1.5 sm:gap-2">
+                                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-orange-500/10 text-orange-600 sm:h-8 sm:w-8 sm:rounded-lg">
+                                                <Icon size={13} className="sm:hidden" />
+                                                <Icon size={16} className="hidden sm:block" />
+                                            </span>
+                                            <span className="text-[9px] font-bold uppercase tracking-wider text-orange-600 sm:text-[11px]">
+                                                Our Solution
+                                            </span>
+                                        </div>
+                                        <h3 className="mt-1.5 font-display text-sm font-semibold leading-snug text-ink sm:mt-2.5 sm:text-xl">
+                                            {item.solutionTitle}
+                                        </h3>
+                                        <p className="mt-1.5 text-xs leading-relaxed text-slate-600 sm:mt-2 sm:text-sm">
+                                            {item.solution}
+                                        </p>
+                                    </div>
+                                </Reveal>
+                            );
+                        })}
+                    </div>
+
+                    {/* See More / Show Less Button */}
+                    {MARKET_ISSUES.length > 2 && (
+                        <div className="relative mt-8 flex justify-center sm:mt-10">
+                            <button
+                                onClick={() => setShowAllIssues((prev) => !prev)}
+                                className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/5 px-6 py-2.5 text-xs font-semibold text-orange-600 transition-colors hover:bg-orange-500/10 sm:text-sm"
+                            >
+                                {showAllIssues ? "Show Less" : "See More Problems"}
+                                <svg
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className={`transition-transform duration-300 ${showAllIssues ? "rotate-180" : ""}`}
+                                >
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -241,7 +378,7 @@ export default function HeroSection() {
             <section className="mx-auto max-w-7xl px-5 sm:px-6 py-12 sm:py-16 lg:px-10 lg:py-20">
                 <Reveal className="mx-auto max-w-xl text-center">
                     <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
-                        Why Teams Choose Us
+                        Why People Choose Us
                     </span>
                     <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
                         Small team, real results.
@@ -269,25 +406,36 @@ export default function HeroSection() {
                 </div>
             </section>
 
-            {/* 4. CLOSING CTA SECTION (Compressed Padding & Cleaner Layout) */}
-            <section className="relative">
-                <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 pb-14 sm:pb-20 lg:px-10 lg:pb-24">
-                    <Reveal className="glass-card mx-auto max-w-3xl rounded-3xl px-6 py-8 sm:px-10 sm:py-10 text-center">
-                        <h2 className="font-display text-xl sm:text-3xl font-semibold leading-tight tracking-tight text-ink">
-                            Your project deserves more than a template and a deadline.
+            {/* 2. PROJECT PREVIEW SECTION */}
+            <section className="mx-auto max-w-7xl px-5 sm:px-6 py-12 sm:py-16 lg:px-10 lg:py-20">
+                <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <span className="text-xs font-semibold uppercase tracking-wider text-orange-600">
+                            Selected Work
+                        </span>
+                        <h2 className="mt-2 sm:mt-3 font-display text-2xl sm:text-4xl font-semibold tracking-tight text-ink">
+                            Products we've shipped
                         </h2>
-                        <p className="mx-auto mt-3 sm:mt-4 max-w-lg text-xs sm:text-base leading-relaxed text-body">
-                            Let's build something your customers can rely on — and your business can actually grow with. Tell us what you're building; we'll reply within one business day.
-                        </p>
-                        <Link
-                            to="/contact"
-                            className="btn-primary mt-5 sm:mt-6 inline-block rounded-full px-7 py-3 text-xs sm:text-sm font-semibold"
-                        >
-                            Get in Touch
-                        </Link>
-                    </Reveal>
+                    </div>
+                    <Link
+                        to="/work"
+                        className="text-sm font-semibold text-navy-700 hover:text-orange-600 transition-colors"
+                    >
+                        Explore All Projects →
+                    </Link>
+                </Reveal>
+
+                {/* Mobile First Grid Layout */}
+                <div className="mt-8 sm:mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={project.id} project={project} index={index} />
+                    ))}
                 </div>
             </section>
+
+
+
+
         </div>
     );
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const WHATSAPP_NUMBER = "923000000000"; // replace with your real number
+const WHATSAPP_NUMBER = "923249425513"; // replace with your real number
 const WHATSAPP_MESSAGE = encodeURIComponent(
     "Hello! I'm interested in Web Development services for my project."
 );
@@ -67,7 +67,7 @@ export default function WebDevDetail() {
     };
 
     return (
-        <div className="relative min-h-screen overflow-hidden bg-white">
+        <div className="relative min-h-screen overflow-x-hidden bg-white">
             {/* Ambient corner glows */}
             <div
                 className="corner-glow corner-glow-navy pointer-events-none -right-40 -top-40 z-0 h-[520px] w-[520px]"
@@ -81,17 +81,17 @@ export default function WebDevDetail() {
             />
 
             {/* ---------- FIXED HEADER ---------- */}
-            <header className="fixed left-0 right-0 top-0 z-50 border-b border-hairline bg-white/85 backdrop-blur-md">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
+            <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-md">
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
                     <Link to="/" className="flex shrink-0 items-center" aria-label="Naralith Studio, home">
-                        <img src="/imgs/logo.png" alt="Naralith Studio" className="h-8 w-auto sm:h-9" />
+                        <img src="/imgs/logo.png" alt="Naralith Studio" className="h-7 w-auto sm:h-9" />
                     </Link>
 
                     <div className="hidden md:flex md:items-center md:justify-center">
-                        <div className="inline-flex items-center gap-2 rounded-full border border-navy-700/15 bg-navy-700/5 px-4 py-1.5">
-                            <p className="whitespace-nowrap text-xs font-semibold text-ink sm:text-sm">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5">
+                            <p className="whitespace-nowrap text-xs font-semibold text-white sm:text-sm">
                                 First impressions decide everything —{" "}
-                                <span className="text-gradient font-bold">
+                                <span className="text-orange-400 font-bold">
                                     we make sure your website wins them.
                                 </span>
                             </p>
@@ -100,86 +100,86 @@ export default function WebDevDetail() {
 
                     <Link
                         to="/contact"
-                        className="btn-primary shrink-0 rounded-full px-5 py-2.5 text-xs font-semibold sm:text-sm"
+                        className="btn-primary shrink-0 rounded-full px-4 sm:px-5 py-2 text-xs font-semibold sm:text-sm"
                     >
                         Get in Touch
                     </Link>
                 </div>
             </header>
 
-            <main className="relative z-10 pb-16 pt-28 lg:pt-32">
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
+            {/* ---------- HERO SECTION WITH BACKGROUND OVERLAY ---------- */}
+            <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-6 lg:px-10">
+                {/* Background Image & Dark Overlay */}
+                <div className="absolute inset-0 z-0 h-full w-full">
+                    <img
+                        src="/imgs/web-dev.jpg"
+                        alt="Web development background process"
+                        className="h-full w-full object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
+                </div>
 
-                    {/* ---------- HERO (Center-aligned Heading) ---------- */}
-                    <div className="flex flex-col items-center text-center">
-                        <span className="inline-flex items-center gap-2 rounded-full border border-navy-700/20 bg-navy-700/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-navy-700">
-                            Full-Stack Web Development
+                {/* Hero Content */}
+                <div className="relative z-10 mx-auto max-w-4xl text-center flex flex-col items-center mt-6 sm:mt-10">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3.5 py-1 text-[10px] min-[330px]:text-xs font-semibold uppercase tracking-wider text-white mb-4 sm:mb-6">
+                        Full-Stack Web Development
+                    </span>
+
+                    <h1 className="font-display text-2xl min-[330px]:text-3xl sm:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-tight text-white max-w-4xl">
+                        A slow, dated website is costing you customers{" "}
+                        <span className="text-orange-400">before they even read a word.</span>
+                    </h1>
+
+                    <p className="mt-4 sm:mt-6 max-w-2xl text-xs min-[330px]:text-sm sm:text-lg leading-relaxed text-gray-200">
+                        We build fast, secure, custom web applications — not templated page-builder sites. Every project is written from scratch, built to load quickly, rank well, and hold up as your business grows.
+                    </p>
+
+                    {/* Action Buttons */}
+                    <div className="mt-8 flex flex-col min-[380px]:flex-row items-center justify-center gap-3.5 w-full max-w-md">
+                        <a
+                            href={WHATSAPP_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full min-[380px]:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-lg transition-all hover:bg-emerald-700"
+                        >
+                            <FaWhatsapp size={18} className="fill-current" />
+                            Chat on WhatsApp
+                        </a>
+
+                        <Link
+                            to="/contact"
+                            className="w-full min-[380px]:w-auto inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/25 px-6 py-3 text-xs sm:text-sm font-semibold transition-all"
+                        >
+                            Request a Free Quote
+                        </Link>
+                    </div>
+
+                    {/* Bottom Sub-banner Card */}
+                    <div className="mt-12 w-full max-w-2xl rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md p-4 sm:p-5 text-center">
+                        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-orange-400">
+                            React · Node.js · MongoDB
                         </span>
-
-                        <h1 className="mt-5 max-w-4xl font-display text-3xl font-medium leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-                            A slow, dated website is costing you customers{" "}
-                            <span className="text-gradient">before they even read a word.</span>
-                        </h1>
-
-                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-body sm:text-lg">
-                            We build fast, secure, custom web applications — not templated page-builder sites.
-                            Every project is written from scratch, built to load quickly, rank well, and hold up as your business grows.
+                        <h3 className="mt-1 font-display text-sm sm:text-base font-semibold text-white">
+                            Built to Last, Not Just Launch
+                        </h3>
+                        <p className="mt-1 text-[11px] sm:text-xs leading-relaxed text-gray-300 max-w-lg mx-auto">
+                            Clean, maintainable code — so your site doesn't fall apart the moment it needs a new feature.
                         </p>
-
-                        <div className="mt-8 flex flex-wrap justify-center items-center gap-4">
-                            <a
-                                href={WHATSAPP_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2.5 rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
-                            >
-                                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                                </svg>
-                                Chat on WhatsApp
-                            </a>
-
-                            <Link
-                                to="/contact"
-                                className="btn-secondary rounded-full px-7 py-3 text-sm font-semibold"
-                            >
-                                Request a Free Quote
-                            </Link>
-                        </div>
                     </div>
+                </div>
+            </section>
 
-                    {/* HERO Visual Banner */}
-                    <div className="mt-12 mx-auto max-w-4xl">
-                        <div className="glass-card overflow-hidden rounded-3xl p-4 sm:p-6">
-                            <img
-                                src="/imgs/web-dev.jpg"
-                                alt="Web development process for Naralith Studio"
-                                width="640"
-                                height="360"
-                                className="h-64 sm:h-80 w-full rounded-2xl object-cover"
-                                loading="eager"
-                            />
-                            <div className="mt-4 text-center">
-                                <span className="text-xs font-semibold uppercase tracking-widest text-orange-600">
-                                    React · Node.js · MongoDB
-                                </span>
-                                <h3 className="mt-1 font-display text-lg font-semibold text-ink">
-                                    Built to Last, Not Just Launch
-                                </h3>
-                                <p className="mt-1 text-xs leading-relaxed text-body max-w-lg mx-auto">
-                                    Clean, maintainable code — so your site doesn't fall apart the moment it needs a new feature.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            {/* ---------- MAIN CONTENT AREA ---------- */}
+            <main className="relative z-10 pb-16 pt-12">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
 
                     {/* ---------- FEATURES (Compressed Grid + Read More Toggle) ---------- */}
-                    <div className="mt-20 lg:mt-24">
+                    <div>
                         <div className="mx-auto max-w-2xl text-center">
                             <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
                                 What's included
                             </h2>
-                            <p className="mt-2 text-sm leading-relaxed text-body sm:text-base">
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
                                 No vague deliverables — here's exactly what you get when you work with us on a website or web app.
                             </p>
                         </div>
@@ -230,7 +230,7 @@ export default function WebDevDetail() {
                             <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
                                 How we work
                             </h2>
-                            <p className="mt-2 text-sm leading-relaxed text-body sm:text-base">
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
                                 A clear process, start to finish — so you always know what's happening next.
                             </p>
                         </div>
@@ -246,10 +246,10 @@ export default function WebDevDetail() {
                                         <span className="text-gradient">{item.step}</span>
                                     </div>
                                     <div className="pt-1.5">
-                                        <h3 className="font-display text-lg font-semibold text-ink">
+                                        <h3 className="font-display text-base sm:text-lg font-semibold text-ink">
                                             {item.title}
                                         </h3>
-                                        <p className="mt-1 max-w-md text-sm leading-relaxed text-body">
+                                        <p className="mt-1 max-w-md text-xs sm:text-sm leading-relaxed text-body">
                                             {item.desc}
                                         </p>
                                     </div>
@@ -258,14 +258,14 @@ export default function WebDevDetail() {
                         </div>
                     </div>
 
-                    {/* ---------- CTA BANNER (Height Compressed) ---------- */}
-                    <div className="btn-primary mt-20 overflow-hidden rounded-3xl px-6 py-6 sm:px-10 sm:py-8 lg:mt-24">
+                    {/* ---------- CTA BANNER (Compressed Height) ---------- */}
+                    <div className="btn-primary mt-20 overflow-hidden rounded-3xl px-5 py-6 sm:px-10 sm:py-8 lg:mt-24">
                         <div className="flex flex-col items-center justify-between gap-6 lg:flex-row text-center lg:text-left">
                             <div>
-                                <span className="text-xs font-semibold uppercase tracking-wider text-white/70">
+                                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-white/70">
                                     Built Right, Built to Last
                                 </span>
-                                <h2 className="mt-1 font-display text-xl font-semibold text-white sm:text-2xl">
+                                <h2 className="mt-1 font-display text-lg font-semibold text-white sm:text-2xl">
                                     Ready to build a website that actually works for you?
                                 </h2>
                                 <p className="mt-1 max-w-xl text-xs leading-relaxed text-white/80 sm:text-sm">
