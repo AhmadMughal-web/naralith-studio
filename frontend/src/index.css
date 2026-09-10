@@ -176,7 +176,7 @@ h1, h2, h3, h4 {
   box-sizing: border-box;
   --os-size: 10px;
   --os-handle-max-size: 80px;
-  --os-handle-min-size: 24px;
+  --os-handle-min-size: 24px;   
   --os-padding-perpendicular: 2px;
   --os-padding-axis: 2px;
   --os-track-border-radius: 999px;

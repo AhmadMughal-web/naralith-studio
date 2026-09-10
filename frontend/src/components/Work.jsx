@@ -114,7 +114,7 @@ export default function Work() {
                         Crafting Digital Solutions for Modern Brands
                     </h1>
                     <p className="mt-3 text-xs sm:text-base leading-relaxed text-body">
-                        We engineer high-performance web applications, custom SaaS platforms, and enterprise-grade full-stack digital solutions.
+                        We engineer high-performance web applications, enterprise-grade full-stack solutions, AI chatbot integrations, and impactful brand & graphic design.
                     </p>
                 </div>
 

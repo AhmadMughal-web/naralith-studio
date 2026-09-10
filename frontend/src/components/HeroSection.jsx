@@ -193,7 +193,6 @@ function ProjectCard({ project, index }) {
 
 // --- Main Hero Page Component ---
 export default function HeroSection() {
-    const [showAllIssues, setShowAllIssues] = useState(false);
 
     return (
         <div className="relative overflow-hidden">
@@ -290,8 +289,7 @@ export default function HeroSection() {
                     <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-ink/10" />
 
                     <div className="flex flex-col gap-8 sm:gap-12">
-                        {(showAllIssues ? MARKET_ISSUES : MARKET_ISSUES.slice(0, 2)).map((item, index) => {
-                            const { Icon } = item;
+                        {MARKET_ISSUES.map((item, index) => {                            const { Icon } = item;
                             return (
                                 <Reveal
                                     key={index}
@@ -347,30 +345,7 @@ export default function HeroSection() {
                         })}
                     </div>
 
-                    {/* See More / Show Less Button */}
-                    {MARKET_ISSUES.length > 2 && (
-                        <div className="relative mt-8 flex justify-center sm:mt-10">
-                            <button
-                                onClick={() => setShowAllIssues((prev) => !prev)}
-                                className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/5 px-6 py-2.5 text-xs font-semibold text-orange-600 transition-colors hover:bg-orange-500/10 sm:text-sm"
-                            >
-                                {showAllIssues ? "Show Less" : "See More Problems"}
-                                <svg
-                                    width="14"
-                                    height="14"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className={`transition-transform duration-300 ${showAllIssues ? "rotate-180" : ""}`}
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                            </button>
-                        </div>
-                    )}
+                   
                 </div>
             </section>
 

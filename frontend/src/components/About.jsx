@@ -16,7 +16,7 @@ import {
 
 // --- Tech Stack Data ---
 const TECH_STACK = [
-    { name: "Frontend Engineering", skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "Tailwind CSS"] },
+    { name: "Frontend Engineering", skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "React Native", "Tailwind CSS"] },
     { name: "Backend & APIs", skills: ["Node.js", "Express.js", "Python", "RESTful APIs", "GraphQL"] },
     { name: "Databases & Cloud", skills: ["SQL (PostgreSQL)", "NoSQL (MongoDB)", "Firebase", "Docker"] },
     { name: "Design & AI Tools", skills: ["Figma", "UI/UX Systems", "Adobe Suite", "TensorFlow", "LangChain"] },
@@ -31,13 +31,13 @@ const CORE_TEAM = [
     },
     {
         name: "Kamran",
-        role: "Senior AI Engineer",
-        bio: "Specializes in Machine Learning, Natural Language Processing, and Agentic AI workflows. Kamran integrates intelligent automation into modern enterprise platforms.",
+        role: "Senior Software Engineer",
+        bio: "Architects high-availability backend infrastructure, database pipelines, and full-stack web applications built for extreme speed and security.",
     },
     {
         name: "Muhammad Laraib",
-        role: "Senior Software Engineer",
-        bio: "Architects high-availability backend infrastructure, database pipelines, and full-stack web applications built for extreme speed and security.",
+        role: "Senior AI Engineer",
+        bio: "Specializes in Machine Learning, Natural Language Processing, and Agentic AI workflows. Laraib integrates intelligent automation into modern enterprise platforms.",
     },
 ];
 
@@ -70,10 +70,10 @@ export default function About() {
                         About Naralith Studio
                     </span>
                     <h1 className="mt-4 font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight text-ink text-center">
-                        From a 3-Developer Vision to a <span className="text-gradient">Modern Remote Studio.</span>
+                        From a Small Team of Engineers to a <span className="text-gradient">Modern Remote Studio.</span>
                     </h1>
                     <p className="mt-4 text-xs sm:text-base leading-relaxed text-body text-left sm:text-center">
-                        Founded in May 2024, Naralith Studio started as a focused collaboration between 3 passionate software engineers driven by a shared goal: bridging complex engineering with clean design.
+                        Naralith Studio was officially founded in May 2026, but our roots go back further. Our core engineers each bring 4+ years of hands-on experience — built through freelancing and full-time roles — before coming together with one shared goal: turning that experience into an agency that builds real, reliable digital products.
                     </p>
                 </div>
 
@@ -85,7 +85,7 @@ export default function About() {
                         </div>
                         <h3 className="mt-4 font-display text-lg sm:text-xl font-bold text-ink text-center sm:text-left">Remote-First Culture Today</h3>
                         <p className="mt-2 text-xs sm:text-sm leading-relaxed text-body text-left">
-                            Today, Naralith Studio operates as a dynamic team of roughly 10 skilled professionals — operating remotely to move fast and collaborate directly with clients globally.
+                            Today, Naralith Studio operates as a dynamic team of roughly 5+ skilled professionals — operating remotely to move fast and collaborate directly with clients globally.
                         </p>
                     </div>
 
@@ -273,7 +273,7 @@ export default function About() {
                         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-orange-600/10 text-orange-600 font-display text-xl font-bold">
                             <Users className="h-6 w-6" />
                         </div>
-                        <h3 className="font-display text-base sm:text-lg font-bold text-ink text-center">7+ Dev Team</h3>
+                        <h3 className="font-display text-base sm:text-lg font-bold text-ink text-center">3+ Dev Team</h3>
                         <p className="mt-2 text-xs leading-relaxed text-body text-left w-full">
                             Backed by associate devs, UI designers, and specialized full-stack engineers working remotely across client projects.
                         </p>

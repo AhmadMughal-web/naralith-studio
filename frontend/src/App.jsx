@@ -12,6 +12,7 @@ import Chatbot from "./components/Chatbot";
 
 // Pages & Detail Pages
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import UiUxDetail from "./pages/UiUxDetail";
 import AiChatbotDetail from "./pages/AiChatbotDetail";
 import GraphicDesignDetail from "./pages/GraphicDesignDetail";
@@ -62,6 +63,8 @@ export default function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
+            {/* Blog Post Detail Pages */}
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
 
@@ -71,6 +74,8 @@ export default function App() {
           <Route path="/graphic-design" element={<GraphicDesignDetail />} />
           <Route path="/web-development" element={<WebDevDetail />} />
           <Route path="/digital-growth" element={<DigitalGrowthDetail />} />
+
+
         </Routes>
       </div>
 

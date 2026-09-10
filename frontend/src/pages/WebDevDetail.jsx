@@ -126,12 +126,12 @@ export default function WebDevDetail() {
                     </span>
 
                     <h1 className="font-display text-2xl min-[330px]:text-3xl sm:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-tight text-white max-w-4xl">
-                        A slow, dated website is costing you customers{" "}
-                        <span className="text-orange-400">before they even read a word.</span>
+                        Your customers are searching —{" "}
+                        <span className="text-orange-400">but they can't find you.</span>
                     </h1>
 
                     <p className="mt-4 sm:mt-6 max-w-2xl text-xs min-[330px]:text-sm sm:text-lg leading-relaxed text-gray-200">
-                        We build fast, secure, custom web applications — not templated page-builder sites. Every project is written from scratch, built to load quickly, rank well, and hold up as your business grows.
+                        Slow load times, broken structure, missing meta tags — most sites lose traffic to issues that never get fixed. We build the technical SEO foundation right, so Google can actually find, crawl, and rank you.
                     </p>
 
                     {/* Action Buttons */}
@@ -157,7 +157,7 @@ export default function WebDevDetail() {
                     {/* Bottom Sub-banner Card */}
                     <div className="mt-12 w-full max-w-2xl rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md p-4 sm:p-5 text-center">
                         <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-orange-400">
-                            React · Node.js · MongoDB
+                            React · Node.js · Python · MongoDB · PostgreSQL 
                         </span>
                         <h3 className="mt-1 font-display text-sm sm:text-base font-semibold text-white">
                             Built to Last, Not Just Launch

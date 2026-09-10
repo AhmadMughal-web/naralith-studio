@@ -5,7 +5,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const COMPANY_NAV = [
     { label: "About Us", path: "/about" },
-    { label: "Our Team", path: "/team" },
+    { label: "Our Team", path: "/about" },
     { label: "Our Works", path: "/work" },
     { label: "Careers", path: "/careers" },
     { label: "Blog", path: "/blog" },

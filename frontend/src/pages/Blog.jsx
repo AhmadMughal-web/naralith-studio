@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { BLOG_POSTS, FEATURED_POST } from "../utils/blogData";
 import {
     FiSearch,
     FiCalendar,
@@ -21,85 +22,6 @@ const CATEGORIES = [
     "Digital Growth"
 ];
 
-// --- Featured Post Data ---
-const FEATURED_POST = {
-    id: "featured-1",
-    title: "Why Custom Web Apps Outperform Generic Templates for Enterprise Growth",
-    slug: "custom-web-apps-vs-templates",
-    excerpt: "An engineering breakdown of performance, security, and conversion metrics comparing bespoke React/Next.js architectures against legacy CMS solutions.",
-    category: "Web Engineering",
-    author: "Muhammad Laraib",
-    authorRole: "Senior Software Engineer",
-    date: "Sep 02, 2026",
-    readTime: "6 min read",
-    image: "/imgs/web-dev.jpg"
-};
-
-// --- All Blog Articles ---
-const BLOG_POSTS = [
-    {
-        id: "post-1",
-        title: "Integrating Agentic AI Workflows into Modern SaaS Products",
-        slug: "agentic-ai-workflows-saas",
-        excerpt: "How to leverage LLM agents and automation tools like LangChain to reduce operational overhead and scale 24/7 customer support.",
-        category: "AI & Automation",
-        author: "Kamran",
-        date: "Aug 28, 2026",
-        readTime: "5 min read",
-        image: "/imgs/ai-chatbot.jpg"
-    },
-    {
-        id: "post-2",
-        title: "Micro-Interactions and Visual Systems That Drive Conversions",
-        slug: "micro-interactions-design-conversions",
-        excerpt: "Exploring human-centric UI patterns, light/dark mode implementations, and Tailwind styling techniques that boost user engagement.",
-        category: "UI/UX Design",
-        author: "Muhammad Ahmad",
-        date: "Aug 15, 2026",
-        readTime: "4 min read",
-        image: "/imgs/ui-ux.jpg"
-    },
-    {
-        id: "post-3",
-        title: "Technical SEO and Core Web Vitals Optimization in Next.js",
-        slug: "technical-seo-nextjs-optimization",
-        excerpt: "Actionable strategies to reduce Time to First Byte (TTFB), optimize cumulative layout shifts, and dominate Google search rankings.",
-        category: "Digital Growth",
-        author: "Naralith Growth Team",
-        date: "Aug 04, 2026",
-        readTime: "7 min read",
-        image: "/imgs/digital-growth.jpg"
-    },
-    {
-        id: "post-4",
-        title: "Building Real-Time Multi-User Collaboration with WebSockets",
-        slug: "realtime-websockets-node-architecture",
-        excerpt: "A deep dive into Node.js server architectures, Socket.io performance tuning, and horizontal scaling strategies for high concurrency.",
-        category: "Web Engineering",
-        author: "Muhammad Laraib",
-        date: "Jul 21, 2026",
-        readTime: "8 min read",
-        image: "/imgs/web-dev.jpg"
-    },
-    {
-        id: "post-5",
-        title: "Crafting Brand Identity Guidelines for Tech Startups",
-        slug: "brand-identity-guidelines-tech-startups",
-        excerpt: "Step-by-step framework for designing vector assets, color tokens, and typographic systems that convey modern technical authority.",
-        category: "UI/UX Design",
-        author: "Muhammad Ahmad",
-        date: "Jul 10, 2026",
-        readTime: "5 min read",
-        image: "/imgs/graphic-design.jpg"
-    }
-];
-
-// SEO NOTE: If using react-helmet-async, wrap this component's return with:
-// <Helmet>
-//   <title>Blog — Naralith Studio | Web Development, AI & Design Insights</title>
-//   <meta name="description" content="Practical guides on custom web development,
-//     AI automation, UI/UX design, and SEO from Naralith Studio's engineering team." />
-// </Helmet>
 
 export default function Blog() {
     const [selectedCategory, setSelectedCategory] = useState("All");

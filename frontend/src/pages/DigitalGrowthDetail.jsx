@@ -116,7 +116,7 @@ export default function DigitalGrowthDetail() {
                         alt="Digital Growth Background"
                         className="h-full w-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/70 to-slate-950/90" />
                 </div>
 
                 {/* Hero Overlay Content */}
@@ -126,12 +126,12 @@ export default function DigitalGrowthDetail() {
                     </span>
 
                     <h1 className="font-display text-2xl min-[330px]:text-3xl sm:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-tight text-white max-w-4xl">
-                        Your website can only grow your business{" "}
-                        <span className="text-orange-400">if people can actually find it.</span>
+                        Your customers are searching —{" "}
+                        <span className="text-orange-400">but they can't find you.</span>
                     </h1>
 
                     <p className="mt-4 sm:mt-6 max-w-2xl text-xs min-[330px]:text-sm sm:text-lg leading-relaxed text-gray-200">
-                        Most sites lose traffic to problems that never get fixed — slow load times, missing meta tags, broken structure. We handle the technical SEO foundation properly, so search engines can actually crawl, understand, and rank your site.
+                        Slow load times, broken structure, missing meta tags — most sites lose traffic to issues that never get fixed. We build the technical SEO foundation right, so Google can actually find, crawl, and rank you.
                     </p>
 
                     {/* Action Buttons */}

@@ -1,4 +1,3 @@
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -15,12 +14,13 @@ OverlayScrollbars(document.body, {
     autoHideDelay: 400,
   },
 });
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </HelmetProvider>
-  </React.StrictMode>
+  </StrictMode>
 );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const WHATSAPP_NUMBER = "923249425513"; // replace with your real number
+const WHATSAPP_NUMBER = "923249425513";
 const WHATSAPP_MESSAGE = encodeURIComponent(
     "Hello! I'm interested in an AI Chatbot for my business."
 );
@@ -126,12 +126,12 @@ export default function AiChatbotDetail() {
                     </span>
 
                     <h1 className="font-display text-2xl min-[330px]:text-3xl sm:text-5xl lg:text-6xl font-medium leading-[1.2] tracking-tight text-white max-w-4xl">
-                        Answer your customers instantly, day or night —{" "}
-                        <span className="text-orange-400">without growing your support team.</span>
+                        Your customers get answers instantly —{" "}
+                        <span className="text-orange-400">even at 3 AM.</span>
                     </h1>
 
                     <p className="mt-4 sm:mt-6 max-w-2xl text-xs min-[330px]:text-sm sm:text-lg leading-relaxed text-gray-200">
-                        Every question that goes unanswered after hours is a missed sale or a frustrated customer. We build AI chatbots trained on your actual business — products, policies, and tone — so customers get real answers immediately.
+                        Every unanswered message is a lost sale. We build AI chatbots trained on your business — products, policies, tone — so customers get real answers, instantly, 24/7.
                     </p>
 
                     {/* Action Buttons */}
