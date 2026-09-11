@@ -247,9 +247,9 @@ export default function HeroSection() {
                         <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm text-muted">
                             <span className="font-semibold text-ink">5+</span> engineers &amp; designers
                             <span aria-hidden="true">•</span>
-                            <span className="font-semibold text-ink">10+</span> products delivered
+                            <span className="font-semibold text-ink">20+</span> products delivered
                             <span aria-hidden="true">•</span>
-                            <span className="font-semibold text-ink">2+ years</span> in production
+                            <span className="font-semibold text-ink">4+ years</span> in production
                         </div>
                     </div>
 

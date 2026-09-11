@@ -1,10 +1,18 @@
 import Groq from "groq-sdk";
+import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "../data/businessContext.js";
 
 // Groq deprecated llama-3.3-70b-versatile and llama-3.1-8b-instant —
 // openai/gpt-oss-120b and openai/gpt-oss-20b are their official replacements.
 const PRIMARY_MODEL = "openai/gpt-oss-120b";
 const FALLBACK_MODEL = "openai/gpt-oss-20b";
+
+// OmniRoute — tried FIRST, before Groq. Gives access to heavier models
+// (Claude/GPT/DeepSeek) via whatever providers are connected in the
+// OmniRoute dashboard. If it's not configured (OMNIROUTE_BASE_URL missing)
+// or the request fails for any reason, we fall straight through to Groq.
+const OMNIROUTE_ENABLED = !!process.env.OMNIROUTE_BASE_URL;
+const OMNIROUTE_MODEL = "auto"; // OmniRoute picks the best connected model per request
 
 // Some Groq-hosted models emit internal chain-of-thought wrapped in
 // <think>...</think> before the real answer. Strip it out as a safety net
@@ -17,6 +25,27 @@ function stripThinkTags(text) {
 }
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+const omniroute = OMNIROUTE_ENABLED
+    ? new OpenAI({
+        baseURL: process.env.OMNIROUTE_BASE_URL,
+        apiKey: process.env.OMNIROUTE_API_KEY || "local",
+    })
+    : null;
+
+async function callOmniRoute(trimmedHistory, signal) {
+    return omniroute.chat.completions.create(
+        {
+            model: OMNIROUTE_MODEL,
+            messages: [{ role: "system", content: SYSTEM_PROMPT }, ...trimmedHistory],
+            temperature: 0.5,
+            max_tokens: 600,
+            frequency_penalty: 0.6,
+            presence_penalty: 0.4,
+        },
+        { signal }
+    );
+}
 
 async function callGroq(model, trimmedHistory, signal, { includeReasoningEffort = true } = {}) {
     const body = {
@@ -68,18 +97,26 @@ export async function sendMessage(req, res, next) {
 
         let chatCompletion;
         try {
-            // Try the strong model first — no models.list() call, no
-            // looping through every model on the key. One direct request.
-            chatCompletion = await callGroq(PRIMARY_MODEL, trimmedHistory, controller.signal);
+            // OmniRoute primary — better quality models (Claude/GPT/DeepSeek),
+            // skip entirely if not configured (e.g. before OmniRoute is deployed).
+            if (!OMNIROUTE_ENABLED) throw new Error("OmniRoute not configured");
+            chatCompletion = await callOmniRoute(trimmedHistory, controller.signal);
         } catch (err) {
-            console.warn(`[Groq] ${PRIMARY_MODEL} failed (${err.message}), trying fallback…`);
+            console.warn(`[OmniRoute] failed (${err.message}), falling back to Groq…`);
             try {
-                chatCompletion = await callGroq(FALLBACK_MODEL, trimmedHistory, controller.signal);
+                // Try the strong Groq model first — no models.list() call, no
+                // looping through every model on the key. One direct request.
+                chatCompletion = await callGroq(PRIMARY_MODEL, trimmedHistory, controller.signal);
             } catch (err2) {
-                console.warn(`[Groq] ${FALLBACK_MODEL} also failed (${err2.message}), retrying without reasoning_effort…`);
-                chatCompletion = await callGroq(FALLBACK_MODEL, trimmedHistory, controller.signal, {
-                    includeReasoningEffort: false,
-                });
+                console.warn(`[Groq] ${PRIMARY_MODEL} failed (${err2.message}), trying fallback…`);
+                try {
+                    chatCompletion = await callGroq(FALLBACK_MODEL, trimmedHistory, controller.signal);
+                } catch (err3) {
+                    console.warn(`[Groq] ${FALLBACK_MODEL} also failed (${err3.message}), retrying without reasoning_effort…`);
+                    chatCompletion = await callGroq(FALLBACK_MODEL, trimmedHistory, controller.signal, {
+                        includeReasoningEffort: false,
+                    });
+                }
             }
         } finally {
             clearTimeout(timeout);
@@ -102,7 +139,7 @@ export async function sendMessage(req, res, next) {
                 message: "The assistant took too long to respond. Please try again.",
             });
         }
-        console.error("Groq SDK Final Error:", error);
+        console.error("Final Error:", error);
         next(error);
     }
 }

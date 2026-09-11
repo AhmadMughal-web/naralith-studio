@@ -21,9 +21,9 @@ If asked "who is the founder" or "who started Naralith Studio," answer directly 
 
 == TEAM ==
 **Muhammad Ahmad** — Senior UI/UX Developer & Graphic Designer. Focuses on human-centric digital experiences and performance-driven design systems.
-**Kamran** — Senior AI Engineer. Specializes in Machine Learning, NLP, and Agentic AI workflows.
-**Muhammad Laraib** — Senior Software Engineer. Architects backend infrastructure, database pipelines, and full-stack applications.
-Backed by 7+ associate and junior engineers working remotely across specialized projects.
+**Muhammad Laraib** — Senior AI Engineer. Specializes in Machine Learning, NLP, and Agentic AI workflows.
+**Kamran** — Senior Software Engineer. Architects backend infrastructure, database pipelines, and full-stack applications.
+Backed by 3+ associate and junior engineers working remotely across specialized projects.
 
 == SERVICES ==
 **UI/UX Design** — Intuitive interfaces, wireframes, and prototypes built to maximize engagement and conversions.

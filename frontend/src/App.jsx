@@ -19,6 +19,14 @@ import GraphicDesignDetail from "./pages/GraphicDesignDetail";
 import WebDevDetail from "./pages/WebDevDetail";
 import DigitalGrowthDetail from "./pages/DigitalGrowthDetail";
 
+// Job Application Form
+import ApplyJob from "./pages/ApplyJob";
+import Careers from "./pages/Careers";
+
+// Footer detail
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -63,8 +71,17 @@ export default function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
+
             {/* Blog Post Detail Pages */}
             <Route path="/blog/:slug" element={<BlogPost />} />
+
+            {/* Job Application Form */}
+            <Route path="/careers/apply/:role" element={<ApplyJob />} />
+            <Route path="/careers" element={<Careers />} />
+
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+
             <Route path="/contact" element={<Contact />} />
           </Route>
 

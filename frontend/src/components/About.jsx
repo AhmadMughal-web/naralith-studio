@@ -17,9 +17,10 @@ import {
 // --- Tech Stack Data ---
 const TECH_STACK = [
     { name: "Frontend Engineering", skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "React Native", "Tailwind CSS"] },
-    { name: "Backend & APIs", skills: ["Node.js", "Express.js", "Python", "RESTful APIs", "GraphQL"] },
-    { name: "Databases & Cloud", skills: ["SQL (PostgreSQL)", "NoSQL (MongoDB)", "Firebase", "Docker"] },
-    { name: "Design & AI Tools", skills: ["Figma", "UI/UX Systems", "Adobe Suite", "TensorFlow", "LangChain"] },
+    { name: "Backend & APIs", skills: ["Node.js", "Express.js", "Python", "RESTful APIs"] },
+    { name: "Databases & Cloud", skills: ["PostgreSQL", "MongoDB", "Firebase", "Docker"] },
+    { name: "Deployment & Hosting", skills: ["Vercel", "AWS", "Railway", "Netlify"] },
+    { name: "Design & AI Tools", skills: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "LangChain", "RAG Systems"] },
 ];
 
 // --- Core Team Members ---

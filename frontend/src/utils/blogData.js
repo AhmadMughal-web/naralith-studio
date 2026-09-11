@@ -1,15 +1,14 @@
-import matter from "gray-matter";
+import fm from "front-matter";
 
-// Vite automatically loads all .md files from the blog content folder
 const modules = import.meta.glob("/src/content/blog/*.md", {
+    eager: true,
     query: "?raw",
     import: "default",
-    eager: true,
 });
 
 export const BLOG_POSTS = Object.entries(modules).map(([path, rawContent]) => {
     const slug = path.split("/").pop().replace(".md", "");
-    const { data, content } = matter(rawContent);
+    const { attributes: data, body: content } = fm(rawContent);
 
     return {
         id: slug,
@@ -22,10 +21,10 @@ export const BLOG_POSTS = Object.entries(modules).map(([path, rawContent]) => {
         date: data.date,
         readTime: data.readTime,
         image: data.image,
-        content, // full markdown body, used only on the detail page
+        content,
     };
-}).sort((a, b) => new Date(b.date) - new Date(a.date)); // newest first
+}).sort((a, b) => new Date(b.date) - new Date(a.date));
 
 export const getPostBySlug = (slug) => BLOG_POSTS.find((post) => post.slug === slug);
 
-export const FEATURED_POST = BLOG_POSTS[0]; // most recent post shown as featured
+export const FEATURED_POST = BLOG_POSTS[0];

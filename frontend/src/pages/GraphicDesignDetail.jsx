@@ -108,7 +108,7 @@ export default function GraphicDesignDetail() {
             </header>
 
             {/* ---------- HERO SECTION WITH BACKGROUND OVERLAY ---------- */}
-            <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-6 lg:px-10">
+            <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-12 pb-16 px-4 sm:px-6 lg:px-10">
                 {/* Background Image & Overlay */}
                 <div className="absolute inset-0 z-0 h-full w-full">
                     <img
