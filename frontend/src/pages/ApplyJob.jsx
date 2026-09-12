@@ -138,6 +138,13 @@ const ROLE_DATA = {
     },
 };
 
+const formatFileSize = (bytes) => {
+    if (bytes < 1024 * 1024) {
+        return `${(bytes / 1024).toFixed(1)} KB`;
+    }
+    return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+};
+
 export default function ApplyJob() {
     const { role } = useParams();
     const roleInfo = ROLE_DATA[role];
@@ -591,7 +598,7 @@ export default function ApplyJob() {
                                                     {resumeFile.name}
                                                 </p>
                                                 <p className="text-[11px] text-slate-500">
-                                                    {(resumeFile.size / 1024 / 1024).toFixed(2)} MB
+                                                    {formatFileSize(resumeFile.size)}
                                                 </p>
                                             </div>
                                         </div>
