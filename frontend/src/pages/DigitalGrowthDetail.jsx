@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { FiCheck, FiClock, FiCreditCard, FiLock, FiChevronDown } from "react-icons/fi";
 
 const WHATSAPP_NUMBER = "923249425513"; // replace with your real number
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -59,11 +60,104 @@ const PROCESS = [
     },
 ];
 
+const PRICING = [
+    {
+        tier: "Basic",
+        price: "PKR 30,000 – 40,000",
+        priceNote: "per month, minimum 3 months + PKR 20,000 setup",
+        delivery: "2–3 working days to go live",
+        payment: "Monthly advance billing, setup fee due with month 1",
+        features: [
+            "10 local keywords tracked",
+            "Full Google Business Profile optimization + 4 posts/month",
+            "30-point technical audit with written fix report",
+            "Core Web Vitals fixes, GSC + GA4 setup",
+            "15–20 local citations, NAP consistency",
+            "1 page content optimization/update per month",
+            "1-page monthly report — rankings, calls, directions, clicks",
+        ],
+        popular: false,
+        comingSoon: false,
+    },
+    {
+        tier: "Standard",
+        price: "PKR 75,000 – 95,000",
+        priceNote: "per month, minimum 6 months + PKR 35,000 setup",
+        delivery: "4–5 working days to go live",
+        payment: "Monthly advance billing, setup fee due with month 1",
+        features: [
+            "25–30 keywords — city-wide + branded + long-tail",
+            "Automated post-visit review generation system",
+            "4 SEO blog posts/month (1,200+ words) + location pages",
+            "5–8 quality backlinks/month — guest posts, local PR",
+            "Full schema markup + site architecture improvements",
+            "Conversion tracking — calls, forms, WhatsApp clicks",
+            "Detailed monthly report + 45-minute strategy call",
+        ],
+        popular: true,
+        comingSoon: false,
+    },
+    {
+        tier: "Premium",
+        price: "PKR 150,000 – 200,000",
+        priceNote: "per month, minimum 6 (12 recommended) + PKR 60,000 setup",
+        delivery: "6–7 working days to go live",
+        payment: "Monthly advance billing, setup fee due with month 1",
+        features: [
+            "60+ keywords — national + multi-city + commercial intent",
+            "Multi-location Google Business Profile management",
+            "8 content pieces/month — blogs, landing pages, buyer guides",
+            "12–15 backlinks/month + tier-1 publication placements",
+            "GEO / AI Search Optimization — visibility in AI answer engines",
+            "Live dashboard with 24/7 access + bi-weekly calls",
+            "Quarterly strategy reset + dedicated manager",
+        ],
+        popular: false,
+        comingSoon: true,
+    },
+];
+
+const FAQS = [
+    {
+        q: "How will SEO actually benefit my business, in real numbers?",
+        a: "For a local business, this is usually the highest-ROI marketing channel available. Once a page starts ranking, that traffic keeps arriving without an ongoing ad spend. A gym that lands even 3 new members a month from organic search often covers the entire retainer cost — and those members tend to stay far longer than the campaign that brought them in.",
+    },
+    {
+        q: "What makes running SEO with Naralith worth it?",
+        a: "Every report we send shows real numbers — rankings, calls, direction requests, and website clicks — not vague claims of 'traffic improving.' We start with a full technical audit before touching anything, so the strategy is based on what your site actually needs, not a generic checklist applied to every client.",
+    },
+    {
+        q: "Will you need access to my Google account or website backend?",
+        a: "Yes, but never your passwords. Google Search Console, Analytics, and Google Business Profile all support adding us as a manager or team member directly — you stay the owner and can remove our access anytime. For website changes, we either get limited CMS/hosting access or work with your existing developer.",
+    },
+    {
+        q: "Why is there a minimum commitment period?",
+        a: "SEO compounds over time — a single month is barely enough to complete the technical setup, let alone show ranking movement. Most clients start seeing measurable results from month 3 onward. Standard and Premium include a review checkpoint at month 4: if agreed targets are missed, you can exit with 30 days' notice.",
+    },
+    {
+        q: "How long until I actually see results?",
+        a: "SEO is not instant, and any agency claiming otherwise isn't being honest with you. Google Business Profile improvements can show within 2–4 weeks, but organic website rankings typically start moving around month 3–4, with meaningful traffic growth by month 5–6. This is standard across the industry — it takes time for search engines to trust and rank a site, and that trust compounds the longer the work continues.",
+    },
+    {
+        q: "Why is Premium marked \"Coming Soon\"?",
+        a: "Premium's tier-1 publication backlinks and GEO (AI search) optimization depend on real publisher relationships and a dedicated content team — both are things we're actively building rather than promising on day one. Standard already covers what the large majority of growing businesses need: full technical SEO, consistent content, and measurable local ranking improvement.",
+    },
+    {
+        q: "What happens if I stop the retainer later?",
+        a: "Rankings don't disappear overnight — the technical work and content already published continue working for a while. But since competitors keep publishing and building links, positions tend to drift down gradually without ongoing work. SEO is an ongoing channel, not a one-time fix.",
+    },
+];
+
 export default function DigitalGrowthDetail() {
     const [expandedCard, setExpandedCard] = useState(null);
+    const [openFaq, setOpenFaq] = useState(null);
 
     const toggleExpand = (idx) => {
         setExpandedCard(expandedCard === idx ? null : idx);
+    };
+
+    const toggleFaq = (idx) => {
+        setOpenFaq(openFaq === idx ? null : idx);
     };
 
     return (
@@ -116,7 +210,7 @@ export default function DigitalGrowthDetail() {
                         alt="Digital Growth Background"
                         className="h-full w-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/70 to-slate-950/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/35 to-slate-950/55" />
                 </div>
 
                 {/* Hero Overlay Content */}
@@ -224,6 +318,99 @@ export default function DigitalGrowthDetail() {
                         </div>
                     </div>
 
+                    {/* ---------- PRICING ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Choose your package
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Transparent pricing, fixed setup days, written scope — no hidden charges.
+                            </p>
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 items-start">
+                            {PRICING.map((plan) => (
+                                <div
+                                    key={plan.tier}
+                                    className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
+                                            ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                            : plan.popular
+                                                ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                                : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        }`}
+                                >
+                                    {plan.popular && (
+                                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-orange-500 px-3 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white shadow-sm">
+                                            Most Popular
+                                        </span>
+                                    )}
+                                    {plan.comingSoon && (
+                                        <span className="absolute right-3.5 top-3.5 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 shadow-sm border border-slate-200">
+                                            <FiLock size={10} />
+                                            Coming Soon
+                                        </span>
+                                    )}
+
+                                    <p className={`text-[10px] font-bold uppercase tracking-[0.2em] ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`}>
+                                        {plan.tier}
+                                    </p>
+                                    <p className={`mt-2 font-display text-xl sm:text-2xl font-bold ${plan.comingSoon ? "text-slate-400" : "text-white"}`}>
+                                        {plan.price}
+                                    </p>
+                                    <p className={`mt-1 text-[11px] ${plan.comingSoon ? "text-slate-400" : "text-white/60"}`}>
+                                        {plan.priceNote}
+                                    </p>
+
+                                    <div className={`mt-4 flex flex-col gap-2 border-t pt-4 ${plan.comingSoon ? "border-slate-200" : "border-white/10"}`}>
+                                        <div className="flex items-start gap-2">
+                                            <FiClock size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.delivery}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <FiCreditCard size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.payment}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <ul className="mt-5 flex flex-col gap-2.5 flex-1">
+                                        {plan.features.map((f) => (
+                                            <li key={f} className="flex items-start gap-2">
+                                                <FiCheck size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                                <span className={`text-[11px] sm:text-xs leading-relaxed ${plan.comingSoon ? "text-slate-500" : "text-white/85"}`}>
+                                                    {f}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {plan.comingSoon ? (
+                                        <button
+                                            disabled
+                                            className="mt-6 w-full rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-400 cursor-not-allowed"
+                                        >
+                                            Join Waitlist Soon
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={WHATSAPP_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold transition-all hover:scale-105 ${plan.popular ? "bg-orange-500 text-white hover:bg-orange-600" : "bg-white text-navy-900"
+                                                }`}
+                                        >
+                                            Get Started
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* ---------- PROCESS ---------- */}
                     <div className="mt-20 lg:mt-24">
                         <div className="mx-auto max-w-2xl text-center">
@@ -255,6 +442,48 @@ export default function DigitalGrowthDetail() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- FAQ ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Frequently asked questions
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Straight answers to what clients actually ask before starting.
+                            </p>
+                        </div>
+
+                        <div className="mx-auto mt-10 max-w-3xl flex flex-col gap-3">
+                            {FAQS.map((item, idx) => {
+                                const isOpen = openFaq === idx;
+                                return (
+                                    <div
+                                        key={item.q}
+                                        className="glass-card rounded-2xl overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleFaq(idx)}
+                                            className="flex w-full items-center justify-between gap-4 p-4 sm:p-5 text-left focus:outline-none"
+                                        >
+                                            <span className="font-display text-xs sm:text-sm font-semibold text-ink">
+                                                {item.q}
+                                            </span>
+                                            <FiChevronDown
+                                                size={16}
+                                                className={`shrink-0 text-navy-700 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                                            />
+                                        </button>
+                                        {isOpen && (
+                                            <p className="px-4 pb-4 sm:px-5 sm:pb-5 text-[11px] sm:text-xs leading-relaxed text-body">
+                                                {item.a}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 

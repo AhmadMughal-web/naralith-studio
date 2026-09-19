@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { FiCheck, FiClock, FiCreditCard, FiLock, FiChevronDown } from "react-icons/fi";
 
 const WHATSAPP_NUMBER = "923249425513"; // replace with your real number
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -59,11 +60,100 @@ const PROCESS = [
     },
 ];
 
+const PRICING = [
+    {
+        tier: "Basic",
+        price: "PKR 35,000 – 45,000",
+        priceNote: "one-time",
+        delivery: "2–3 working days",
+        payment: "50% advance → 50% on final delivery",
+        features: [
+            "3 logo concepts, presented in real mockups — not plain white background",
+            "3 revision rounds on the chosen concept",
+            "Vector files — AI, SVG, EPS + PNG transparent (3 sizes), JPG, PDF",
+            "Full colour, single colour, black, reverse, and greyscale versions",
+            "Colour palette (HEX/RGB/CMYK) + font pairing sheet",
+            "Print-ready visiting card design (300 DPI, CMYK, bleed)",
+            "10 social media post templates + 3 stories (Canva editable)",
+        ],
+        popular: false,
+        comingSoon: false,
+    },
+    {
+        tier: "Standard",
+        price: "PKR 95,000 – 125,000",
+        priceNote: "one-time",
+        delivery: "5–6 working days",
+        payment: "40% advance → 40% on direction approval → 20% on handover",
+        features: [
+            "Full logo system — primary, horizontal, submark, icon-only, favicon",
+            "15–20 page Brand Guidelines PDF with usage rules and photography direction",
+            "Visiting card, letterhead, envelope, email signature, signage/standees",
+            "Menu design (print + digital + QR) or equivalent core collateral",
+            "25 posts + 8 stories + 3 carousels, organized by category",
+            "1 promotional reel edit (15–30 seconds)",
+            "All collateral delivered print-ready in CMYK with bleed marks",
+        ],
+        popular: true,
+        comingSoon: false,
+    },
+    {
+        tier: "Premium",
+        price: "PKR 200,000 – 250,000",
+        priceNote: "setup + PKR 45,000–60,000/month content engine",
+        delivery: "12–14 working days setup",
+        payment: "40% advance → 40% system approval → 20% handover, retainer billed monthly",
+        features: [
+            "Full brand strategy — positioning, customer personas, tone of voice, tagline",
+            "30–40 page brand guidelines document",
+            "Custom icon set (15–20 icons) + brand patterns and illustration style",
+            "Dieline-ready packaging artwork, ready for direct production",
+            "Full collateral suite — flyers, standees, billboard template, vehicle branding",
+            "Monthly content engine: 20 posts + 8 stories + 4 reels, every month",
+            "Dedicated designer with 24-hour turnaround on small requests",
+        ],
+        popular: false,
+        comingSoon: true,
+    },
+];
+
+const FAQS = [
+    {
+        q: "How will professional branding actually benefit my business?",
+        a: "A consistent, well-designed identity is often the deciding factor when two businesses offer something similar — customers subconsciously trust the one that looks more established. Better branding directly improves how seriously customers take your pricing, your ads, and your social presence, often without them realizing why.",
+    },
+    {
+        q: "What makes getting branding done with Naralith worth it?",
+        a: "Every logo is presented in real mockups — on a signboard, a cup, a phone screen — not floating on plain white, so you can actually judge how it will look in the real world. We build a complete, documented system from day one, not just a logo file, so your brand stays consistent as you grow and add new materials.",
+    },
+    {
+        q: "Do I need to provide my own images or content for the designs?",
+        a: "No — we can source suitable stock imagery or create custom illustrations as part of the package. If you have your own product photos or existing brand materials, sending them over just helps us match your world more closely from the start.",
+    },
+    {
+        q: "How does the revision process actually work?",
+        a: "A 'revision' means refining the direction we're already working on based on your feedback. If you want to explore a completely different concept after one's already been approved, that's treated as a new direction and quoted separately — we'll always tell you upfront before any extra cost applies.",
+    },
+    {
+        q: "Why is Premium marked \"Coming Soon\"?",
+        a: "Premium's monthly content engine and dedicated designer model needs a slightly larger, structured team to deliver reliably every single month without dropping quality — that's what we're actively building. Standard already gives you a complete brand system and enough collateral to launch and run confidently.",
+    },
+    {
+        q: "Who owns the final designs once the project is done?",
+        a: "You do — completely. Once final payment is made, all source files (AI, SVG, EPS) are handed over and the brand is fully yours to use, edit, or hand to any other designer in the future.",
+    },
+];
+
 export default function GraphicDesignDetail() {
     const [expandedCard, setExpandedCard] = useState(null);
+    const [openFaq, setOpenFaq] = useState(null);
 
     const toggleExpand = (idx) => {
         setExpandedCard(expandedCard === idx ? null : idx);
+    };
+
+    const toggleFaq = (idx) => {
+        setOpenFaq(openFaq === idx ? null : idx);
     };
 
     return (
@@ -116,7 +206,7 @@ export default function GraphicDesignDetail() {
                         alt="Graphic design and branding background"
                         className="h-full w-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/35 to-slate-950/55" />
                 </div>
 
                 {/* Hero Content */}
@@ -228,6 +318,99 @@ export default function GraphicDesignDetail() {
                         </p>
                     </div>
 
+                    {/* ---------- PRICING ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Choose your package
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Transparent pricing, fixed delivery days, written scope — no hidden charges.
+                            </p>
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 items-start">
+                            {PRICING.map((plan) => (
+                                <div
+                                    key={plan.tier}
+                                    className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
+                                            ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                            : plan.popular
+                                                ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                                : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        }`}
+                                >
+                                    {plan.popular && (
+                                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-orange-500 px-3 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white shadow-sm">
+                                            Most Popular
+                                        </span>
+                                    )}
+                                    {plan.comingSoon && (
+                                        <span className="absolute right-3.5 top-3.5 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 shadow-sm border border-slate-200">
+                                            <FiLock size={10} />
+                                            Coming Soon
+                                        </span>
+                                    )}
+
+                                    <p className={`text-[10px] font-bold uppercase tracking-[0.2em] ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`}>
+                                        {plan.tier}
+                                    </p>
+                                    <p className={`mt-2 font-display text-xl sm:text-2xl font-bold ${plan.comingSoon ? "text-slate-400" : "text-white"}`}>
+                                        {plan.price}
+                                    </p>
+                                    <p className={`mt-1 text-[11px] ${plan.comingSoon ? "text-slate-400" : "text-white/60"}`}>
+                                        {plan.priceNote}
+                                    </p>
+
+                                    <div className={`mt-4 flex flex-col gap-2 border-t pt-4 ${plan.comingSoon ? "border-slate-200" : "border-white/10"}`}>
+                                        <div className="flex items-start gap-2">
+                                            <FiClock size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.delivery}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <FiCreditCard size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.payment}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <ul className="mt-5 flex flex-col gap-2.5 flex-1">
+                                        {plan.features.map((f) => (
+                                            <li key={f} className="flex items-start gap-2">
+                                                <FiCheck size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                                <span className={`text-[11px] sm:text-xs leading-relaxed ${plan.comingSoon ? "text-slate-500" : "text-white/85"}`}>
+                                                    {f}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {plan.comingSoon ? (
+                                        <button
+                                            disabled
+                                            className="mt-6 w-full rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-400 cursor-not-allowed"
+                                        >
+                                            Join Waitlist Soon
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={WHATSAPP_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold transition-all hover:scale-105 ${plan.popular ? "bg-orange-500 text-white hover:bg-orange-600" : "bg-white text-navy-900"
+                                                }`}
+                                        >
+                                            Get Started
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* ---------- PROCESS ---------- */}
                     <div className="mt-20 lg:mt-24">
                         <div className="mx-auto max-w-2xl text-center">
@@ -259,6 +442,48 @@ export default function GraphicDesignDetail() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- FAQ ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Frequently asked questions
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Straight answers to what clients actually ask before starting.
+                            </p>
+                        </div>
+
+                        <div className="mx-auto mt-10 max-w-3xl flex flex-col gap-3">
+                            {FAQS.map((item, idx) => {
+                                const isOpen = openFaq === idx;
+                                return (
+                                    <div
+                                        key={item.q}
+                                        className="glass-card rounded-2xl overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleFaq(idx)}
+                                            className="flex w-full items-center justify-between gap-4 p-4 sm:p-5 text-left focus:outline-none"
+                                        >
+                                            <span className="font-display text-xs sm:text-sm font-semibold text-ink">
+                                                {item.q}
+                                            </span>
+                                            <FiChevronDown
+                                                size={16}
+                                                className={`shrink-0 text-navy-700 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                                            />
+                                        </button>
+                                        {isOpen && (
+                                            <p className="px-4 pb-4 sm:px-5 sm:pb-5 text-[11px] sm:text-xs leading-relaxed text-body">
+                                                {item.a}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 

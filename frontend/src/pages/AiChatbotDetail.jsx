@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { FiCheck, FiClock, FiCreditCard, FiLock, FiChevronDown, FiKey } from "react-icons/fi";
 
 const WHATSAPP_NUMBER = "923249425513";
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -59,11 +60,107 @@ const PROCESS = [
     },
 ];
 
+const PRICING = [
+    {
+        tier: "Basic",
+        price: "PKR 25,000 – 35,000",
+        priceNote: "one-time, no monthly fee",
+        delivery: "2–3 working days",
+        payment: "50% advance → 50% on launch",
+        features: [
+            "Rule-based FAQ chatbot (scripted, not AI)",
+            "10–15 pre-set FAQs — timings, pricing, delivery, parking",
+            "Website widget only",
+            "Lead capture form → instant WhatsApp notification",
+            "Off-hours auto-reply",
+            "English + basic pre-written Urdu replies",
+            "50+ test messages before launch",
+            "2 revision rounds",
+        ],
+        popular: false,
+        comingSoon: false,
+    },
+    {
+        tier: "Standard",
+        price: "PKR 85,000 – 110,000",
+        priceNote: "+ PKR 15,000/month management",
+        delivery: "5–6 working days",
+        payment: "50% advance → 50% on launch, retainer billed monthly in advance",
+        features: [
+            "Real AI chatbot trained on your own data",
+            "English + Urdu + Roman Urdu — natural conversation",
+            "Website + WhatsApp Business API, same brain on both",
+            "Bot books directly — slot check, calendar entry, confirmation",
+            "Lead qualification with structured WhatsApp summary",
+            "Human handoff with full chat history + staff dashboard",
+            "100+ internal test conversations before you see it",
+            "30-day monitoring + unlimited tuning included",
+        ],
+        popular: true,
+        comingSoon: false,
+    },
+    {
+        tier: "Premium",
+        price: "PKR 220,000 – 280,000",
+        priceNote: "+ PKR 35,000–50,000/month",
+        delivery: "12–14 working days",
+        payment: "40% advance → 30% core agent live → 30% all channels live",
+        features: [
+            "Custom RAG-based AI agent with memory",
+            "Urdu voice support — bot can answer phone calls",
+            "Multi-channel: website + WhatsApp + Instagram + Messenger + phone",
+            "Proactive re-engagement + abandoned booking recovery",
+            "Upsell logic + sentiment detection with escalation",
+            "In-chat payment collection + CRM integration",
+            "500+ test conversations across all channels",
+            "90-day active optimization included",
+        ],
+        popular: false,
+        comingSoon: true,
+    },
+];
+
+const FAQS = [
+    {
+        q: "How will an AI chatbot actually benefit my business?",
+        a: "It captures leads you're currently losing outside business hours, and handles the repetitive questions (pricing, timings, delivery area) that eat up your staff's time. Most businesses see 30-50% of enquiries handled by the bot alone — meaning your team spends less time answering the same 10 questions, and no message goes unanswered while you're closed.",
+    },
+    {
+        q: "What makes a chatbot from Naralith worth investing in?",
+        a: "We train the bot entirely on your real business content — your menu, prices, policies, and tone — not a generic script. Before it ever reaches a customer, we run 100+ real test conversations to make sure it actually sounds like you and handles edge cases gracefully. And it doesn't stop at launch — 30 days of active monitoring and tuning are included, so the bot keeps improving based on how customers actually use it.",
+    },
+    {
+        q: "Will you need my email password or API keys to set this up?",
+        a: "No — we never ask for your passwords. For WhatsApp Business API and any LLM/API keys the bot needs, you can either keep everything under your own account (recommended — you invite us as a team member, and can revoke our access anytime) or let us manage it under our account with transparent pass-through billing, no markup. Either way, nothing is hidden from you.",
+    },
+    {
+        q: "How long does WhatsApp Business API approval take?",
+        a: "That's controlled by Meta, not us — usually 2-7 days. We launch your website bot first and add WhatsApp the moment approval comes through, so it never delays your delivery date.",
+    },
+    {
+        q: "Why is Premium marked \"Coming Soon\"?",
+        a: "Premium's core feature is a Urdu voice bot that answers phone calls — genuinely difficult work: Urdu speech recognition, latency control, and telephony integration all need specialist expertise we're actively building. Standard already gives you a real AI bot trained on your data, fluent in Roman Urdu, with full booking automation — it covers what most businesses actually need today.",
+    },
+    {
+        q: "Can I add new FAQs or update the bot later?",
+        a: "Yes. On Basic you get 5 free additions after launch (PKR 500/question after that). On Standard, updates are included in your monthly retainer — just send us the change and it's live. A full menu or policy overhaul is PKR 8,000 per bulk update, also free within the retainer.",
+    },
+    {
+        q: "What happens to my chat data — is it private?",
+        a: "Chat logs live in your own dashboard. We never share customer data or use it for training elsewhere, and we'll sign an NDA on request. Payment details are never stored by the bot — they go through a secure gateway link.",
+    },
+];
+
 export default function AiChatbotDetail() {
     const [expandedCard, setExpandedCard] = useState(null);
+    const [openFaq, setOpenFaq] = useState(null);
 
     const toggleExpand = (idx) => {
         setExpandedCard(expandedCard === idx ? null : idx);
+    };
+
+    const toggleFaq = (idx) => {
+        setOpenFaq(openFaq === idx ? null : idx);
     };
 
     return (
@@ -116,7 +213,7 @@ export default function AiChatbotDetail() {
                         alt="AI Chatbot Background"
                         className="h-full w-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/50 to-slate-950/70" />
                 </div>
 
                 {/* Hero Content */}
@@ -224,6 +321,99 @@ export default function AiChatbotDetail() {
                         </div>
                     </div>
 
+                    {/* ---------- PRICING ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Choose your package
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Transparent pricing, fixed delivery days, written scope — no hidden charges.
+                            </p>
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 items-start">
+                            {PRICING.map((plan) => (
+                                <div
+                                    key={plan.tier}
+                                    className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
+                                        ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                        : plan.popular
+                                            ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                            : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        }`}
+                                >
+                                    {plan.popular && (
+                                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-orange-500 px-3 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white shadow-sm">
+                                            Most Popular
+                                        </span>
+                                    )}
+                                    {plan.comingSoon && (
+                                        <span className="absolute right-3.5 top-3.5 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 shadow-sm border border-slate-200">
+                                            <FiLock size={10} />
+                                            Coming Soon
+                                        </span>
+                                    )}
+
+                                    <p className={`text-[10px] font-bold uppercase tracking-[0.2em] ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`}>
+                                        {plan.tier}
+                                    </p>
+                                    <p className={`mt-2 font-display text-xl sm:text-2xl font-bold ${plan.comingSoon ? "text-slate-400" : "text-white"}`}>
+                                        {plan.price}
+                                    </p>
+                                    <p className={`mt-1 text-[11px] ${plan.comingSoon ? "text-slate-400" : "text-white/60"}`}>
+                                        {plan.priceNote}
+                                    </p>
+
+                                    <div className={`mt-4 flex flex-col gap-2 border-t pt-4 ${plan.comingSoon ? "border-slate-200" : "border-white/10"}`}>
+                                        <div className="flex items-start gap-2">
+                                            <FiClock size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.delivery}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <FiCreditCard size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.payment}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <ul className="mt-5 flex flex-col gap-2.5 flex-1">
+                                        {plan.features.map((f) => (
+                                            <li key={f} className="flex items-start gap-2">
+                                                <FiCheck size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                                <span className={`text-[11px] sm:text-xs leading-relaxed ${plan.comingSoon ? "text-slate-500" : "text-white/85"}`}>
+                                                    {f}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {plan.comingSoon ? (
+                                        <button
+                                            disabled
+                                            className="mt-6 w-full rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-400 cursor-not-allowed"
+                                        >
+                                            Join Waitlist Soon
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={WHATSAPP_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold transition-all hover:scale-105 ${plan.popular ? "bg-orange-500 text-white hover:bg-orange-600" : "bg-white text-navy-900"
+                                                }`}
+                                        >
+                                            Get Started
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* ---------- PROCESS ---------- */}
                     <div className="mt-20 lg:mt-24">
                         <div className="mx-auto max-w-2xl text-center">
@@ -255,6 +445,50 @@ export default function AiChatbotDetail() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+
+
+                    {/* ---------- FAQ ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Frequently asked questions
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Straight answers to what clients actually ask before starting.
+                            </p>
+                        </div>
+
+                        <div className="mx-auto mt-10 max-w-3xl flex flex-col gap-3">
+                            {FAQS.map((item, idx) => {
+                                const isOpen = openFaq === idx;
+                                return (
+                                    <div
+                                        key={item.q}
+                                        className="glass-card rounded-2xl overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleFaq(idx)}
+                                            className="flex w-full items-center justify-between gap-4 p-4 sm:p-5 text-left focus:outline-none"
+                                        >
+                                            <span className="font-display text-xs sm:text-sm font-semibold text-ink">
+                                                {item.q}
+                                            </span>
+                                            <FiChevronDown
+                                                size={16}
+                                                className={`shrink-0 text-navy-700 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                                            />
+                                        </button>
+                                        {isOpen && (
+                                            <p className="px-4 pb-4 sm:px-5 sm:pb-5 text-[11px] sm:text-xs leading-relaxed text-body">
+                                                {item.a}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { FiCheck, FiClock, FiCreditCard, FiLock, FiChevronDown } from "react-icons/fi";
 
 const WHATSAPP_NUMBER = "923249425513"; // replace with your real number
 const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -43,11 +44,98 @@ const PROCESS = [
     { step: "04", title: "Handoff", desc: "Clean, developer-ready files — or we build it ourselves, end to end." },
 ];
 
+const PRICING = [
+    {
+        tier: "Basic",
+        price: "PKR 60,000 – 85,000",
+        priceNote: "one-time",
+        delivery: "3–4 working days",
+        payment: "50% advance → 50% on Figma handoff",
+        features: [
+            "3–5 screens, designed for both desktop and mobile",
+            "Low-fidelity wireframes reviewed before full design begins",
+            "Core design basics — colors, text styles, buttons, form fields, spacing grid",
+            "Empty, loading, error, and success states covered — not just the happy path",
+            "WCAG AA accessible — proper contrast and tap target sizing",
+            "Organized Figma file with exportable assets and spacing specs",
+            "2 revision rounds",
+        ],
+        popular: false,
+        comingSoon: false,
+    },
+    {
+        tier: "Standard",
+        price: "PKR 175,000 – 240,000",
+        priceNote: "one-time",
+        delivery: "7–8 working days",
+        payment: "35% advance → 35% hi-fi screens approved → 30% design system + handoff",
+        features: [
+            "12–20 screens, designed across desktop, tablet, and mobile",
+            "Competitor UX audit, 2 user personas, journey map, information architecture",
+            "Full component library — every variant and state (hover, active, disabled, error)",
+            "Interactive prototype + 1-hour recorded developer handoff call",
+            "3 revision rounds, one per project phase",
+            "Motion design delivered as ready-to-use Lottie files",
+        ],
+        popular: true,
+        comingSoon: false,
+    },
+    {
+        tier: "Premium",
+        price: "PKR 400,000 – 550,000",
+        priceNote: "or PKR 120,000–150,000/month as an ongoing design partner",
+        delivery: "14–16 working days",
+        payment: "30% advance → 25% research+IA → 25% hi-fi → 20% handoff + design QA",
+        features: [
+            "30+ screens across web, iOS, and Android with platform-specific patterns",
+            "Discovery workshops + real moderated user testing with 5 users",
+            "Production-grade design system — Figma variables/tokens, Tailwind/CSS export",
+            "Full accessibility audit with a written report",
+            "Design QA during development — we check the build against the design directly",
+            "Unlimited revisions within each project phase",
+        ],
+        popular: false,
+        comingSoon: true,
+    },
+];
+
+const FAQS = [
+    {
+        q: "How will good UI/UX design actually benefit my product?",
+        a: "Confusing interfaces are one of the most common reasons users drop off before converting — often silently, with no error or complaint to point to. Clear, well-researched design directly reduces that drop-off and increases the number of visitors who actually complete a signup, booking, or purchase.",
+    },
+    {
+        q: "What makes getting design done with Naralith worth it?",
+        a: "We start with real research — competitor audits, user personas, journey mapping — rather than jumping straight to visuals, so the interface is built around how people actually use it. Every screen accounts for the states most designers skip: empty states, loading, errors — the moments that make or break trust in a real product.",
+    },
+    {
+        q: "Do I need a developer, or can you build the interface too?",
+        a: "Either works. We hand off clean, developer-ready Figma files with full specs if you have your own dev team, or we can build the interface ourselves as part of a combined design-and-development project — ask us for a bundled quote if that's the direction you want.",
+    },
+    {
+        q: "What's the difference between a 'revision' and asking for something new?",
+        a: "A revision means refining a design we're already working on based on your feedback. If you want to explore a fundamentally different layout or concept after one's been approved, that's treated as a new direction and quoted separately — always communicated upfront before we start.",
+    },
+    {
+        q: "Why is Premium marked \"Coming Soon\"?",
+        a: "Premium includes moderated user testing with real participants and platform-specific design across web, iOS, and Android — that requires a larger, more specialized team to run properly and consistently. Standard already delivers full UX research, a complete component library, and developer-ready handoff, which covers what most product teams need to launch.",
+    },
+    {
+        q: "Who owns the Figma files once the project is complete?",
+        a: "You do. Once final payment is made, you get full edit access to the Figma file — before that, it's available as view-only so you can review progress. Everything is yours to keep, extend, or hand to another designer or developer in the future.",
+    },
+];
+
 export default function UiUxDetail() {
     const [expandedCard, setExpandedCard] = useState(null);
+    const [openFaq, setOpenFaq] = useState(null);
 
     const toggleExpand = (idx) => {
         setExpandedCard(expandedCard === idx ? null : idx);
+    };
+
+    const toggleFaq = (idx) => {
+        setOpenFaq(openFaq === idx ? null : idx);
     };
 
     return (
@@ -100,7 +188,7 @@ export default function UiUxDetail() {
                         alt="UI/UX design process background"
                         className="h-full w-full object-cover object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/35 to-slate-950/55" />
                 </div>
 
                 {/* Hero Content */}
@@ -208,6 +296,99 @@ export default function UiUxDetail() {
                         </div>
                     </div>
 
+                    {/* ---------- PRICING ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Choose your package
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Transparent pricing, fixed delivery days, written scope — no hidden charges.
+                            </p>
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3 items-start">
+                            {PRICING.map((plan) => (
+                                <div
+                                    key={plan.tier}
+                                    className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
+                                            ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                            : plan.popular
+                                                ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                                : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        }`}
+                                >
+                                    {plan.popular && (
+                                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-orange-500 px-3 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white shadow-sm">
+                                            Most Popular
+                                        </span>
+                                    )}
+                                    {plan.comingSoon && (
+                                        <span className="absolute right-3.5 top-3.5 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 shadow-sm border border-slate-200">
+                                            <FiLock size={10} />
+                                            Coming Soon
+                                        </span>
+                                    )}
+
+                                    <p className={`text-[10px] font-bold uppercase tracking-[0.2em] ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`}>
+                                        {plan.tier}
+                                    </p>
+                                    <p className={`mt-2 font-display text-xl sm:text-2xl font-bold ${plan.comingSoon ? "text-slate-400" : "text-white"}`}>
+                                        {plan.price}
+                                    </p>
+                                    <p className={`mt-1 text-[11px] ${plan.comingSoon ? "text-slate-400" : "text-white/60"}`}>
+                                        {plan.priceNote}
+                                    </p>
+
+                                    <div className={`mt-4 flex flex-col gap-2 border-t pt-4 ${plan.comingSoon ? "border-slate-200" : "border-white/10"}`}>
+                                        <div className="flex items-start gap-2">
+                                            <FiClock size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.delivery}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <FiCreditCard size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                            <span className={`text-[11px] sm:text-xs ${plan.comingSoon ? "text-slate-400" : "text-white/80"}`}>
+                                                {plan.payment}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <ul className="mt-5 flex flex-col gap-2.5 flex-1">
+                                        {plan.features.map((f) => (
+                                            <li key={f} className="flex items-start gap-2">
+                                                <FiCheck size={14} className={`mt-0.5 shrink-0 ${plan.comingSoon ? "text-slate-400" : "text-orange-400"}`} />
+                                                <span className={`text-[11px] sm:text-xs leading-relaxed ${plan.comingSoon ? "text-slate-500" : "text-white/85"}`}>
+                                                    {f}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {plan.comingSoon ? (
+                                        <button
+                                            disabled
+                                            className="mt-6 w-full rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-400 cursor-not-allowed"
+                                        >
+                                            Join Waitlist Soon
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={WHATSAPP_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold transition-all hover:scale-105 ${plan.popular ? "bg-orange-500 text-white hover:bg-orange-600" : "bg-white text-navy-900"
+                                                }`}
+                                        >
+                                            Get Started
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* ---------- PROCESS ---------- */}
                     <div className="mt-20 lg:mt-24">
                         <div className="mx-auto max-w-2xl text-center">
@@ -239,6 +420,48 @@ export default function UiUxDetail() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- FAQ ---------- */}
+                    <div className="mt-20 lg:mt-24">
+                        <div className="mx-auto max-w-2xl text-center">
+                            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                                Frequently asked questions
+                            </h2>
+                            <p className="mt-2 text-xs sm:text-base leading-relaxed text-body">
+                                Straight answers to what clients actually ask before starting.
+                            </p>
+                        </div>
+
+                        <div className="mx-auto mt-10 max-w-3xl flex flex-col gap-3">
+                            {FAQS.map((item, idx) => {
+                                const isOpen = openFaq === idx;
+                                return (
+                                    <div
+                                        key={item.q}
+                                        className="glass-card rounded-2xl overflow-hidden"
+                                    >
+                                        <button
+                                            onClick={() => toggleFaq(idx)}
+                                            className="flex w-full items-center justify-between gap-4 p-4 sm:p-5 text-left focus:outline-none"
+                                        >
+                                            <span className="font-display text-xs sm:text-sm font-semibold text-ink">
+                                                {item.q}
+                                            </span>
+                                            <FiChevronDown
+                                                size={16}
+                                                className={`shrink-0 text-navy-700 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                                            />
+                                        </button>
+                                        {isOpen && (
+                                            <p className="px-4 pb-4 sm:px-5 sm:pb-5 text-[11px] sm:text-xs leading-relaxed text-body">
+                                                {item.a}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 

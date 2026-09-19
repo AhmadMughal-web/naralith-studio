@@ -62,15 +62,81 @@ export default function Services() {
 
                 {/* Intro Section */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-orange-600">
+                    <span className="inline-block rounded-full bg-orange-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-orange-600 border border-orange-500/20">
                         Our Expertise
                     </span>
-                    <h1 className="mt-3 text-2xl font-bold sm:text-4xl lg:text-5xl text-navy-900 text-center">
+                    <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-navy-900 text-center leading-tight">
                         End-to-End Digital Services Designed to Scale
                     </h1>
-                    {/* Heading center rahegi, description text mobile par left se start hoga */}
-                    <p className="mt-3 text-xs sm:text-base leading-relaxed text-body text-left sm:text-center">
+                    <p className="mt-4 text-xs sm:text-base leading-relaxed text-body text-left sm:text-center max-w-2xl mx-auto">
                         We partner with ambitious businesses and brands to deliver tailored engineering, strategic design, and intelligent digital solutions that drive measurable growth.
+                    </p>
+                </div>
+
+                {/* Tier Structure Cards */}
+                <div className="mt-10 sm:mt-14 mx-auto max-w-5xl px-2">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-6 items-stretch">
+
+                        {/* Basic */}
+                        <div className="group relative flex flex-col justify-between rounded-2xl border border-navy-900/15 bg-navy-900 p-6 sm:p-7 text-center shadow-lg shadow-navy-900/10 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-orange-400/40">
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-400">
+                                    Tier 01
+                                </p>
+                                <p className="mt-2 font-display text-xl sm:text-2xl font-bold tracking-wide text-white">
+                                    Basic
+                                </p>
+                                <div className="mx-auto mt-4 h-px w-10 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                            </div>
+                            <p className="mt-6 text-xs sm:text-sm font-medium text-white/70 tracking-wide">
+                                Get started fast
+                            </p>
+                        </div>
+
+                        {/* Standard - Featured */}
+                        <div className="group relative flex flex-col justify-between rounded-2xl border-2 border-orange-500/80 bg-navy-900 p-6 sm:p-7 text-center shadow-xl shadow-orange-500/10 sm:-translate-y-2 sm:scale-105 transition-all duration-300 hover:-translate-y-2.5 hover:shadow-2xl hover:shadow-orange-500/20">
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-orange-500 px-3 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white shadow-sm">
+                                Popular Choice
+                            </div>
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-400">
+                                    Tier 02
+                                </p>
+                                <p className="mt-2 font-display text-xl sm:text-2xl font-bold tracking-wide text-white">
+                                    Standard
+                                </p>
+                                <div className="mx-auto mt-4 h-px w-12 bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
+                            </div>
+                            <p className="mt-6 text-xs sm:text-sm font-semibold text-orange-200 tracking-wide">
+                                Full-scope delivery
+                            </p>
+                        </div>
+
+                        {/* Premium — Coming Soon */}
+                        <div className="relative flex flex-col justify-between rounded-2xl border border-dashed border-slate-300 bg-slate-50/80 p-6 sm:p-7 text-center backdrop-blur-sm transition-all duration-300 hover:border-slate-400">
+                            <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-slate-500 shadow-sm border border-slate-200">
+                                Coming Soon
+                            </span>
+                            <div>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                                    Tier 03
+                                </p>
+                                <p className="mt-2 font-display text-xl sm:text-2xl font-bold tracking-wide text-slate-400">
+                                    Premium
+                                </p>
+                                <div className="mx-auto mt-4 h-px w-10 bg-slate-200" />
+                            </div>
+                            <p className="mt-6 text-xs sm:text-sm font-medium text-slate-400 tracking-wide">
+                                Launching soon
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <p className="mt-8 sm:mt-10 text-xs sm:text-sm leading-relaxed text-body text-center max-w-2xl mx-auto">
+                        Every service is structured across three tiers — engineered to match businesses at
+                        different stages of growth. Full scope, deliverables, and timelines for each package
+                        are outlined on the individual service page — tap <strong className="text-navy-900 font-semibold">More Details</strong> below to explore.
                     </p>
                 </div>
 
