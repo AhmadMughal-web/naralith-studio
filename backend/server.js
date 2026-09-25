@@ -6,6 +6,9 @@ import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
+// Admin Panel
+import authRoutes from "./routes/authRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
 
 
 dotenv.config();
@@ -21,6 +24,9 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/chat", chatRoutes);
+
+app.use("/api/admin/auth", authRoutes);
+app.use("/api/admin/projects", projectRoutes);
 
 app.use(errorHandler);
 

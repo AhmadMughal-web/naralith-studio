@@ -27,6 +27,16 @@ import Careers from "./pages/Careers";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 
+// ---- Admin Panel ----
+import { AdminAuthProvider } from "./admin/context/AdminAuthContext";
+import ProtectedRoute from "./admin/components/ProtectedRoute";
+import AdminLayout from "./admin/components/AdminLayout";
+import AdminLogin from "./admin/pages/AdminLogin";
+import Dashboard from "./admin/pages/Dashboard";
+import Projects from "./admin/pages/Projects";
+import ProjectDetail from "./admin/pages/ProjectDetail";
+import Team from "./admin/pages/Team";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -48,17 +58,28 @@ function MainLayout() {
   );
 }
 
+// Wraps every /admin/* route with auth context
+function AdminRoot() {
+  return (
+    <AdminAuthProvider>
+      <Outlet />
+    </AdminAuthProvider>
+  );
+}
+
 export default function App() {
+  const { pathname } = useLocation();
+  const isAdminRoute = pathname.startsWith("/admin");
+
   return (
     <div className="relative min-h-screen bg-white text-ink antialiased overflow-x-hidden">
-      {/* GLOBAL FIXED CORNER GLOWS */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        {/* Top-Left Navy Glow */}
-        <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-navy-500/25 blur-[120px] sm:h-[650px] sm:w-[650px]" />
-
-        {/* Bottom-Right Orange Glow */}
-        <div className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-orange-300/20 blur-[120px] sm:h-[650px] sm:w-[650px]" />
-      </div>
+      {/* GLOBAL FIXED CORNER GLOWS — skip on admin panel */}
+      {!isAdminRoute && (
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+          <div className="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-navy-500/25 blur-[120px] sm:h-[650px] sm:w-[650px]" />
+          <div className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full bg-orange-300/20 blur-[120px] sm:h-[650px] sm:w-[650px]" />
+        </div>
+      )}
 
       <ScrollToTop />
 
@@ -71,17 +92,11 @@ export default function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
-
-            {/* Blog Post Detail Pages */}
             <Route path="/blog/:slug" element={<BlogPost />} />
-
-            {/* Job Application Form */}
             <Route path="/careers/apply/:role" element={<ApplyJob />} />
             <Route path="/careers" element={<Careers />} />
-
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
-
             <Route path="/contact" element={<Contact />} />
           </Route>
 
@@ -92,11 +107,33 @@ export default function App() {
           <Route path="/web-development" element={<WebDevDetail />} />
           <Route path="/digital-growth" element={<DigitalGrowthDetail />} />
 
-
+          {/* Internal Admin Panel — not linked anywhere publicly */}
+          <Route path="/admin" element={<AdminRoot />}>
+            <Route path="login" element={<AdminLogin />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AdminLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Dashboard />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="projects/:id" element={<ProjectDetail />} />
+              <Route
+                path="team"
+                element={
+                  <ProtectedRoute adminOnly>
+                    <Team />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+          </Route>
         </Routes>
       </div>
 
-      <Chatbot />
+      {!isAdminRoute && <Chatbot />}
     </div>
   );
 }

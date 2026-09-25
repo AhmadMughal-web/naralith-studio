@@ -63,17 +63,16 @@ const PROCESS = [
 const PRICING = [
     {
         tier: "Basic",
-        price: "PKR 25,000 – 35,000",
+        price: "PKR 30,000 – 35,000",
         priceNote: "one-time, no monthly fee",
-        delivery: "2–3 working days",
-        payment: "50% advance → 50% on launch",
+        delivery: "3–4 working days",
+        payment: "20% advance → 40% mid-project (staging link review) → 40% on launch, retainer billed monthly in advance",
         features: [
             "Rule-based FAQ chatbot (scripted, not AI)",
             "10–15 pre-set FAQs — timings, pricing, delivery, parking",
             "Website widget only",
             "Lead capture form → instant WhatsApp notification",
             "Off-hours auto-reply",
-            "English + basic pre-written Urdu replies",
             "50+ test messages before launch",
             "2 revision rounds",
         ],
@@ -82,10 +81,10 @@ const PRICING = [
     },
     {
         tier: "Standard",
-        price: "PKR 85,000 – 110,000",
-        priceNote: "+ PKR 15,000/month management",
-        delivery: "5–6 working days",
-        payment: "50% advance → 50% on launch, retainer billed monthly in advance",
+        price: "PKR 55,000 – 70,000",
+        priceNote: "+ PKR 10,000/month management",
+        delivery: "8–9 working days",
+        payment: "20% advance → 40% mid-project (staging link review) → 40% on launch, retainer billed monthly in advance",
         features: [
             "Real AI chatbot trained on your own data",
             "English + Urdu + Roman Urdu — natural conversation",
@@ -101,7 +100,7 @@ const PRICING = [
     },
     {
         tier: "Premium",
-        price: "PKR 220,000 – 280,000",
+        price: "PKR 100,000 – 150,000",
         priceNote: "+ PKR 35,000–50,000/month",
         delivery: "12–14 working days",
         payment: "40% advance → 30% core agent live → 30% all channels live",

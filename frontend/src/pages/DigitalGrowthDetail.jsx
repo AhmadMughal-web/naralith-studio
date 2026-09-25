@@ -63,54 +63,57 @@ const PROCESS = [
 const PRICING = [
     {
         tier: "Basic",
-        price: "PKR 30,000 – 40,000",
-        priceNote: "per month, minimum 3 months + PKR 20,000 setup",
-        delivery: "2–3 working days to go live",
-        payment: "Monthly advance billing, setup fee due with month 1",
+        price: "PKR 25,000",
+        priceNote: "per month (3-month commitment) + PKR 20,000 initial setup",
+        onboarding: "Audit & Strategy setup in 3–5 working days",
+        payment: "20% setup deposit upfront → 80% balance upon onboarding completion, monthly retainer billed in advance",
         features: [
-            "10 local keywords tracked",
+            "10 Local keywords tracked (City-specific)",
+            "Expect initial ranking movement in 3–4 months (Local Search Focus)",
             "Full Google Business Profile optimization + 4 posts/month",
-            "30-point technical audit with written fix report",
-            "Core Web Vitals fixes, GSC + GA4 setup",
-            "15–20 local citations, NAP consistency",
-            "1 page content optimization/update per month",
-            "1-page monthly report — rankings, calls, directions, clicks",
+            "30-point technical audit with fix roadmap",
+            "Core Web Vitals & Google Search Console / GA4 setup",
+            "15–20 Local citations & NAP consistency cleanup",
+            "1 Page content optimization/update per month",
+            "Monthly ranking, traffic & lead report (Calls/WhatsApp)",
         ],
         popular: false,
         comingSoon: false,
     },
     {
         tier: "Standard",
-        price: "PKR 75,000 – 95,000",
-        priceNote: "per month, minimum 6 months + PKR 35,000 setup",
-        delivery: "4–5 working days to go live",
-        payment: "Monthly advance billing, setup fee due with month 1",
+        price: "PKR 45,000",
+        priceNote: "per month (6-month commitment) + PKR 30,000 initial setup",
+        onboarding: "Audit, On-page & Schema live in 5–7 working days",
+        payment: "20% setup deposit upfront → 80% balance upon onboarding completion, monthly retainer billed in advance",
         features: [
-            "25–30 keywords — city-wide + branded + long-tail",
-            "Automated post-visit review generation system",
-            "4 SEO blog posts/month (1,200+ words) + location pages",
-            "5–8 quality backlinks/month — guest posts, local PR",
-            "Full schema markup + site architecture improvements",
-            "Conversion tracking — calls, forms, WhatsApp clicks",
-            "Detailed monthly report + 45-minute strategy call",
+            "25–30 Keywords — City-wide, branded & long-tail",
+            "Noticeable keyword growth & traffic boost within 3–5 months",
+            "Automated post-visit review generation setup",
+            "4 SEO blog posts/month (1,200+ words) + Location pages",
+            "5–8 Quality backlinks/month — Guest posts & local outreach",
+            "Full Schema markup & Site architecture optimization",
+            "Conversion tracking — Calls, forms & WhatsApp clicks",
+            "Detailed monthly performance report + 45-min strategy call",
         ],
         popular: true,
         comingSoon: false,
     },
     {
         tier: "Premium",
-        price: "PKR 150,000 – 200,000",
-        priceNote: "per month, minimum 6 (12 recommended) + PKR 60,000 setup",
-        delivery: "6–7 working days to go live",
-        payment: "Monthly advance billing, setup fee due with month 1",
+        price: "PKR 120,000",
+        priceNote: "per month (6 to 12-month commitment) + PKR 50,000 initial setup",
+        onboarding: "Complete strategy & multi-location setup in 7 working days",
+        payment: "20% setup deposit upfront → 80% balance upon onboarding completion, monthly retainer billed in advance",
         features: [
-            "60+ keywords — national + multi-city + commercial intent",
+            "60+ Keywords — National, multi-city & high intent",
+            "Competitive keyword rankings & authority build-up in 4–6 months",
             "Multi-location Google Business Profile management",
-            "8 content pieces/month — blogs, landing pages, buyer guides",
-            "12–15 backlinks/month + tier-1 publication placements",
-            "GEO / AI Search Optimization — visibility in AI answer engines",
-            "Live dashboard with 24/7 access + bi-weekly calls",
-            "Quarterly strategy reset + dedicated manager",
+            "8 High-intent content pieces/month (Blogs, landing pages, guides)",
+            "12–15 Backlinks/month + Tier-1 publication outreach",
+            "GEO / AI Search Engine Optimization (ChatGPT, Perplexity visibility)",
+            "24/7 Live performance dashboard + Bi-weekly review calls",
+            "Quarterly strategy reset + Dedicated SEO manager",
         ],
         popular: false,
         comingSoon: true,
@@ -334,10 +337,10 @@ export default function DigitalGrowthDetail() {
                                 <div
                                     key={plan.tier}
                                     className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
-                                            ? "border border-dashed border-slate-300 bg-slate-50/60"
-                                            : plan.popular
-                                                ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
-                                                : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                        : plan.popular
+                                            ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                            : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
                                         }`}
                                 >
                                     {plan.popular && (

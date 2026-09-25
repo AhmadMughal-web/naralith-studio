@@ -47,52 +47,53 @@ const PROCESS = [
 const PRICING = [
     {
         tier: "Basic",
-        price: "PKR 60,000 – 85,000",
-        priceNote: "one-time",
+        price: "PKR 25,000",
+        priceNote: "one-time project fee",
         delivery: "3–4 working days",
-        payment: "50% advance → 50% on Figma handoff",
+        payment: "20% advance → 40% mid-project (staging link review) → 40% on launch.",
         features: [
-            "3–5 screens, designed for both desktop and mobile",
-            "Low-fidelity wireframes reviewed before full design begins",
-            "Core design basics — colors, text styles, buttons, form fields, spacing grid",
-            "Empty, loading, error, and success states covered — not just the happy path",
-            "WCAG AA accessible — proper contrast and tap target sizing",
-            "Organized Figma file with exportable assets and spacing specs",
-            "2 revision rounds",
+            "3–5 Screens designed for both desktop and mobile (Responsive layout)",
+            "Low-fidelity wireframes reviewed before high-fidelity visual design",
+            "Core design basics (Colors, typography, buttons, inputs, spacing grid)",
+            "Edge cases covered (Empty, loading, error, and success states)",
+            "WCAG AA accessible — Proper contrast and touch/tap target sizing",
+            "Organized Figma file with auto-layout and exportable assets",
+            "Up to 2 revision rounds included",
         ],
         popular: false,
         comingSoon: false,
     },
     {
         tier: "Standard",
-        price: "PKR 175,000 – 240,000",
-        priceNote: "one-time",
+        price: "PKR 175,000",
+        priceNote: "one-time project fee",
         delivery: "7–8 working days",
-        payment: "35% advance → 35% hi-fi screens approved → 30% design system + handoff",
+        payment: "20% advance deposit → 40% hi-fi prototype review → 40% design system & file handoff",
         features: [
-            "12–20 screens, designed across desktop, tablet, and mobile",
-            "Competitor UX audit, 2 user personas, journey map, information architecture",
-            "Full component library — every variant and state (hover, active, disabled, error)",
-            "Interactive prototype + 1-hour recorded developer handoff call",
-            "3 revision rounds, one per project phase",
-            "Motion design delivered as ready-to-use Lottie files",
+            "12–20 Screens designed across desktop, tablet, and mobile",
+            "Competitor UX audit, user personas, journey mapping & IA structure",
+            "Full Figma component library with states (Hover, active, disabled, error)",
+            "Clickable interactive prototype + 1-hour developer walkthrough call",
+            "Up to 3 revision rounds across project phases",
+            "Micro-interactions & motion specs delivered as Lottie files",
+            "Tailwind CSS theme tokens export ready for developers",
         ],
         popular: true,
         comingSoon: false,
     },
     {
         tier: "Premium",
-        price: "PKR 400,000 – 550,000",
-        priceNote: "or PKR 120,000–150,000/month as an ongoing design partner",
-        delivery: "14–16 working days",
-        payment: "30% advance → 25% research+IA → 25% hi-fi → 20% handoff + design QA",
+        price: "PKR 400,000",
+        priceNote: "one-time project OR PKR 120,000/month ongoing design partner",
+        delivery: "14–16 working days (Initial Design Sprint)",
+        payment: "20% advance → 40% mid-project system review → 40% handoff + design QA",
         features: [
-            "30+ screens across web, iOS, and Android with platform-specific patterns",
-            "Discovery workshops + real moderated user testing with 5 users",
-            "Production-grade design system — Figma variables/tokens, Tailwind/CSS export",
-            "Full accessibility audit with a written report",
-            "Design QA during development — we check the build against the design directly",
-            "Unlimited revisions within each project phase",
+            "30+ Screens across web, iOS, and Android (Platform-native HIG & Material guidelines)",
+            "Discovery workshop + Moderated user testing session feedback",
+            "Production-grade design system (Figma variables, design tokens & UI Kit)",
+            "Full accessibility compliance audit & developer-ready tokens export",
+            "Post-handoff Design QA (Checking coded build against Figma design)",
+            "Dedicated senior UI/UX designer with priority revisions",
         ],
         popular: false,
         comingSoon: true,
@@ -312,10 +313,10 @@ export default function UiUxDetail() {
                                 <div
                                     key={plan.tier}
                                     className={`relative flex flex-col rounded-2xl p-5 sm:p-6 transition-all duration-300 ${plan.comingSoon
-                                            ? "border border-dashed border-slate-300 bg-slate-50/60"
-                                            : plan.popular
-                                                ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
-                                                : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
+                                        ? "border border-dashed border-slate-300 bg-slate-50/60"
+                                        : plan.popular
+                                            ? "border-2 border-orange-500/80 bg-navy-900 shadow-xl shadow-orange-500/10 sm:-translate-y-2"
+                                            : "border border-navy-900/15 bg-navy-900 shadow-lg shadow-navy-900/10"
                                         }`}
                                 >
                                     {plan.popular && (
